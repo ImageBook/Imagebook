@@ -1,0 +1,15 @@
+.font-poppins {
+    font-family: 'Poppins', sans-serif;
+}
+
+.font-roboto {
+    font-family: 'Roboto', sans-serif;
+}
+
+.PhoneInputInput{
+    background-color: #FFFFFF;
+}
+.PhoneInputInput:focus{
+    background-color: #FFFFFF;
+    outline: none;
+}
