@@ -3,7 +3,7 @@ import rightIcon from '../images/num-pad/arrow-right.png';
 
 const ContinueByName = () => {
     return (
-        <div className='flex flex-col justify-center min-h-screen'>
+        <div className='flex flex-col justify-center h-full'>
             <p className='font-semibold text-[#00386D] text-lg ml-8 mb-2'>Enter Your Name</p>
             <form className=' mx-6'>
                 <input className='w-full border-2 border-[#D3DBE3] rounded-[10px] h-12 pl-4 focus:outline-none mb-2' type="text" placeholder='First Name' name="f-name" id="" required />

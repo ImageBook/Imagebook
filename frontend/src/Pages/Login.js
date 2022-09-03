@@ -58,10 +58,10 @@ const Login = () => {
 
     return (
         <div>
-            <div className="bg-[#FFFFFF] font-poppins">
+            <div  style={{paddingTop:"10vh"}} className="h-screen bg-[#FFFFFF] font-poppins">
                 {!valid &&
                     <div className="">
-                        <p className='font-semibold text-[25px] mt-[130px] mx-8 mb-4 leading-tight'>Welcome to <br /> Imagebook</p>
+                        <p className='font-semibold text-[25px] mx-8 mb-4'>Welcome to <br /> Imagebook</p>
                         <p className='text-lg text-[#00386D] font-semibold ml-8 mb-[7px] '>Enter Your Number</p>
                         <PhoneInput className='border-[2px] border-[#EBF1F4] rounded-[10px] mx-6 pl-3 h-12 space-x-1 mb-4 text-lg'
                             defaultCountry='IN'
@@ -102,7 +102,7 @@ const Login = () => {
                                     <p className='font-semibold text-[30px] text-center mt-1'>9</p>
                                 </div>
                             </div>
-                            <div className='mx-14 flex justify-between items-center pb-11'>
+                            <div className='mx-14 flex justify-between items-center'>
                                 <div onClick={appendPlus} className='w-[50px] h-[50px] rounded-full shadow items-center justify-center'>
                                     <p className='font-semibold text-[30px] text-center mt-1'>+</p>
                                 </div>
@@ -114,7 +114,7 @@ const Login = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className='w-full mx-auto px-6 '>
+                        <div className='absolute bottom-16 w-full mx-auto px-6 '>
                             <button onClick={verifyNumber} className='w-full bg-[#1363DF] flex space-x-2 items-center justify-center rounded-lg h-12'>
                                 <p className='text-white font-semibold text-lg'>Verify</p>
                                 <img src={rightIcon} alt="" />

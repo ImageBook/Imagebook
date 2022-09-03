@@ -49,11 +49,11 @@ const OtpPage = ({ setValid, number }) => {
     // console.log(otp)
 
     return (
-        <div>
+        <div className='h-full'>
             {
                 !hidden &&
                 <>
-                    <p className='font-semibold text-[25px] mt-[100px] mx-8 mb-2 leading-tight'>OTP Sent</p>
+                    <p className='font-semibold text-[25px]  mx-8 mb-2 leading-tight'>OTP Sent</p>
                     <p className='mx-8 mb-4'>Waiting to automatically detect SMS <br /> sent to <span className='font-semibold text-[#1B2328]'>{number}</span></p>
                     <div className='mx-6 flex items-center justify-between mb-6'>
                         {/* <div className='rounded-[10px] border-2 border-[#D3DBE3] w-16 h-12 flex items-center justify-center text-center text-[22px] font-medium'>
@@ -79,7 +79,7 @@ const OtpPage = ({ setValid, number }) => {
                     </div>
                     <p className='ml-6 text-[13px]'>Entered Wrong Number? <span onClick={() => setValid(false)} className='text-[#0093ED] font-semibold hover:cursor-pointer'>Edit Number</span></p>
                     <div className='w-full mx-auto font-roboto space-y-2'>
-                        <div className='mx-14 flex justify-between items-center pt-11'>
+                        <div className='mx-14 flex justify-between items-center pt-10'>
                             <div onClick={appendOne} className='w-[50px] h-[50px] rounded-full shadow items-center justify-center'>
                                 <p className='font-semibold text-[30px] text-center mt-1'>1</p>
                             </div>
@@ -112,7 +112,7 @@ const OtpPage = ({ setValid, number }) => {
                                 <p className='font-semibold text-[30px] text-center mt-1'>9</p>
                             </div>
                         </div>
-                        <div className='mx-14 flex justify-between items-center pb-11'>
+                        <div className='mx-14 flex justify-between items-center'>
                             <div className='w-[50px] h-[50px] rounded-full shadow items-center justify-center'>
                                 <p className='font-semibold text-[30px] text-center mt-1'>+</p>
                             </div>
