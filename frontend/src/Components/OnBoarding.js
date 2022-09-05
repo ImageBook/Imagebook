@@ -6,9 +6,9 @@ import { useNavigate } from "react-router-dom";
 
 const OnBoarding = () => {
   const [onboarding, setOnboarding] = useState("1");
-  const navigate=useNavigate()
+  const navigate = useNavigate()
 
-  const openLoginHandler = ()=>{
+  const openLoginHandler = () => {
     navigate('/login')
   }
 
@@ -32,8 +32,8 @@ const OnBoarding = () => {
         )}
         {onboarding === "2" && (
           <p className="mx-9 text-center mt-3 text-sm text-black">
-            “सभ्य समाज की सभ्य पहचान है,<br/>
-इमेजबुक अब भरोसा करना आसान है”
+            “सभ्य समाज की सभ्य पहचान है,<br />
+            इमेजबुक अब भरोसा करना आसान है”
           </p>
         )}
         <div className="flex flex-row absolute bottom-24 gap-2">
@@ -54,7 +54,7 @@ const OnBoarding = () => {
             }}
           ></div>
         </div>
-        {onboarding==='1' && <button
+        {onboarding === '1' && <button
           style={{
             backgroundColor: "#1363DF",
             color: "white",
@@ -66,38 +66,39 @@ const OnBoarding = () => {
           className="absolute bottom-0"
           onClick={(e) => setOnboarding("2")}
         >
-            <div className="flex flex-row gap-3 justify-center">
-                    <p>Continue</p>
-                    <ArrowForwardIcon/>
-            </div>
+          <div className="flex flex-row gap-3 justify-center">
+            <p>Continue</p>
+            <ArrowForwardIcon />
+          </div>
         </button>}
-        {onboarding==='2' && 
-        <div style={{margin:"24px",width:"90%"}} className="flex items-center justify-center gap-3 flex-row absolute bottom-0">
+        {onboarding === '2' &&
+          <div style={{ margin: "24px", width: "90%" }} className="flex items-center justify-center gap-3 flex-row absolute bottom-0">
             <button
-            style={{
-                backgroundColor:"#DFF6FF",
-                color:"#0D1C2E",
-                height:"52px",
-                width:"52px",
-                borderRadius:"10px"
-            }}
-            onClick={(e)=>setOnboarding('1')}
+              style={{
+                backgroundColor: "#DFF6FF",
+                color: "#0D1C2E",
+                height: "52px",
+                width: "52px",
+                borderRadius: "10px"
+              }}
+              onClick={(e) => setOnboarding('1')}
             >
 
-                <ArrowBackIcon/>
+              <ArrowBackIcon />
             </button>
-            <button style={{backgroundColor: "#1363DF",
-            color: "white",
-            width:"90%",
-            height: "52px",
-            borderRadius: "10px",
+            <button style={{
+              backgroundColor: "#1363DF",
+              color: "white",
+              width: "90%",
+              height: "52px",
+              borderRadius: "10px",
             }}>
-                <div className="flex flex-row gap-3 justify-center" onClick={openLoginHandler}>
-                    <p>Continue</p>
-                    <ArrowForwardIcon/>
-                </div>
+              <div className="flex flex-row gap-3 justify-center" onClick={openLoginHandler}>
+                <p>Continue</p>
+                <ArrowForwardIcon />
+              </div>
             </button>
-        </div>}
+          </div>}
       </div>
     </>
   );
