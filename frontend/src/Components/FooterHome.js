@@ -7,10 +7,8 @@ import plus from '../images/Home/plus.png';
 
 const FooterHome = () => {
     return (
-        <div className='mt-10'>
-            <div className=''>
-                <div className='w-11/12 mx-auto py-4'>
-                    <div className='flex items-center justify-between'>
+            <div className='w-full bg-white fixed bottom-0 z-50'>
+                    <div className='flex items-center justify-between mt-10 w-11/12 mx-auto py-4'>
                         <img src={home} alt="" />
                         <img src={film} alt="" />
                         <div className='bg-[#1363DF] rounded-full w-16 h-16 relative shadow -mt-14'>
@@ -21,9 +19,8 @@ const FooterHome = () => {
                         <img src={trophy} alt="" />
                         <img src={person} alt="" />
                     </div>
-                </div>
             </div>
-        </div>
+
     );
 };
 
