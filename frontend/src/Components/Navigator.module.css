@@ -11,6 +11,7 @@
     width:93%;
     max-width: 100%;
     color:white;
+    margin: auto;
 }
 .left{
     display: flex;
