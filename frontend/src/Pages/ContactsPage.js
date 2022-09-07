@@ -3,6 +3,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import ContactEach from "../components/ContactEach";
 import { useEffect, useState } from "react";
 import PersonIcon from "@mui/icons-material/Person";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const ContactsPage = () => {
   const arr = [
@@ -32,13 +33,19 @@ const ContactsPage = () => {
 
   const [searching, setSearching] = useState(false);
   const [name, setName] = useState("");
+  const navigate= useNavigate()
 
   const searchNameHandler = (e) => {
     setName(e.target.value);
   };
 
   const backHandler = ()=>{
-    setSearching(false);
+
+    if(searching===true){
+        setSearching(false);
+        return;
+    }
+    navigate(-1);
   }
 
   return (
