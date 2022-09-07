@@ -1,6 +1,5 @@
 import React from 'react';
 import user1 from '../images/Home/user1.png';
-import user2 from '../images/Home/user2.png';
 import user3 from '../images/Home/user3.png';
 import shield from '../images/Home/shield-fill.png';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -8,7 +7,7 @@ import 'swiper/css';
 
 const InvitePeople = () => {
     return (
-        <div className='w-11/12 mx-auto'>
+        <div className='w-11/12 mx-auto pb-20'>
             <div className='flex items-center justify-between mb-4'>
                 <p className='font-semibold text-sm text-[#416C87]'>Invite on imagebook</p>
                 <p className='underline font-semibold text-[#47B5FF] text-xs'>More</p>
