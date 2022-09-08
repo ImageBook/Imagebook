@@ -14,15 +14,30 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 async function run() {
     try {
         await client.connect();
-        const usersCollection = client.db('vpromise-database').collection('users');
+        const usersCollection = client.db('imagebook-database').collection('users');
 
         // console.log('everything is ok');
-        // app.get('/users/:phone', async (req, res) => {
-        //     const phone = req.params.phone;
-        //     const query = { number: phone };
-        //     const result = await usersCollection.findOne(query);
-        //     res.send(result);
-        // })
+
+        // store users
+        app.post('/users', async (req, res) => {
+            const user = req.body;
+            const result = await usersCollection.insertOne(user);
+            res.send(result);
+        })
+        // find user by number
+        app.get('/users/:number', async (req, res) => {
+            const phone = req.params.number;
+            const query = { number: phone };
+            const result = await usersCollection.findOne(query);
+            if (result) {
+                res.send(result);
+            }
+            else {
+                const data = { user: 'No user found!' }
+                res.send(data);
+            }
+            // console.log(result);
+        })
     }
     finally {
 
