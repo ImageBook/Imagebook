@@ -42,8 +42,10 @@ const RespectSentPage = () => {
 
             {
                 shareModal &&
+                <>
+                <div className='backdrop'  />
                 <div data-aos="fade-up"
-                    data-aos-duration="400" className='fixed bottom-0 left-0 right-0 z-100 '>
+                    data-aos-duration="400" className='fixed bottom-0 left-0 right-0 z-50 '>
                     <div className='w-full bg-white rounded-t-3xl'>
                         <div className='h-64 w-11/12 mx-auto px-4 py-5'>
                             <div className='flex items-center justify-between mb-3'>
@@ -76,6 +78,7 @@ const RespectSentPage = () => {
                         </div>
                     </div>
                 </div>
+                </>
             }
         </div>
     );
