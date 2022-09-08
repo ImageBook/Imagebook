@@ -10,7 +10,8 @@ import { RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
 import auth from '../firebase.init';
 import ContinueByName from '../components/ContinueByName';
 import OtpInput from 'react18-input-otp';
-import login from '../images/num-pad/checkmark-circle-2.png'
+import login from '../images/num-pad/checkmark-circle-2.png';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     // login screen
@@ -21,6 +22,7 @@ const Login = () => {
     // otp screen
     const [hidden, setHidden] = useState(false);;
     const [otp, setOtp] = useState('');
+    const navigate = useNavigate();
     const handleChange = (enteredOtp) => {
         setOtp(enteredOtp);
     };
@@ -123,8 +125,19 @@ const Login = () => {
         e.preventDefault();
         const confirmationResult = window.confirmationResult;
         confirmationResult.confirm(otp).then((result) => {
-            setHidden(true);
-            const user = result.user;
+            fetch(`http://localhost:5000/users/${number}`)
+                .then(res => res.json())
+                .then(data => {
+                    // console.log('data', data);
+                    if (data.user) {
+                        setHidden(true);
+                    }
+                    else {
+                        navigate('/home');
+                    }
+                })
+            // setHidden(true);
+            // const user = result.user;
         }).catch((error) => {
             console.log(error);
         });
@@ -296,7 +309,7 @@ const Login = () => {
                             }
                             {
                                 hidden &&
-                                <ContinueByName></ContinueByName>
+                                <ContinueByName number={number}></ContinueByName>
                             }
                         </div>
                     </>

@@ -10,6 +10,7 @@ import Notifications from './Pages/Notifications';
 import SearchPage from './components/SearchPage';
 import GiveRespectSearchPage from './components/GiveRespectSearchPage';
 import SuggestName from './components/SuggestName';
+import ForNewUser from './components/ForNewUser';
 
 function App() {
   return (

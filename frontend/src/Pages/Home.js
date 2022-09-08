@@ -16,12 +16,22 @@ import settings from '../images/Home/settings.png';
 import logout from '../images/Home/logout.png';
 import version from '../images/Home/version.png';
 import { useNavigate } from 'react-router-dom';
+import auth from '../firebase.init';
+import { signOut } from "firebase/auth";
 
 const Home = () => {
     const [sidebar, setSidebar] = useState(false);
     const navigate = useNavigate();
     const goToSearch = () => {
         navigate('/search')
+    }
+    const doSignOut = () => {
+        signOut(auth).then(() => {
+            console.log('signed out');
+            navigate('/login');
+        }).catch((error) => {
+            console.log('error occurred');
+        });
     }
     return (
         <div className='font-poppins relative flex flex-col justify-between min-h-screen'>
@@ -49,7 +59,8 @@ const Home = () => {
             <InvitePeople></InvitePeople>
             <FooterHome></FooterHome>
             {
-                sidebar && <div className={sidebar ? 'left-0 top-0 right-16 z-50 fixed bg-white ' : '-left-full '}>
+                sidebar && <div data-aos="fade-right"
+                    data-aos-duration="500" className={sidebar ? 'left-0 top-0 right-16 z-50 fixed bg-white ' : '-left-full '}>
                     <div className='w-full h-screen'>
                         <div className='w-5/6 mx-auto'>
                             <div className='flex items-center justify-between mt-6 mb-8'>
@@ -88,7 +99,7 @@ const Home = () => {
                             <p className='text-[#1B2328]'>Account Setting</p>
                         </div>
                         <hr />
-                        <div className='w-5/6 mx-auto flex items-center space-x-2 my-4'>
+                        <div onClick={doSignOut} className='w-5/6 mx-auto flex items-center space-x-2 my-4'>
                             <img src={logout} alt="" />
                             <p className='text-[#1B2328]'>Logout</p>
                         </div>

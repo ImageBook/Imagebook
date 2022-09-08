@@ -33,24 +33,24 @@ const ContactsPage = () => {
 
   const [searching, setSearching] = useState(false);
   const [name, setName] = useState("");
-  const navigate= useNavigate()
+  const navigate = useNavigate()
 
   const searchNameHandler = (e) => {
     setName(e.target.value);
   };
 
-  const backHandler = ()=>{
+  const backHandler = () => {
 
-    if(searching===true){
-        setSearching(false);
-        return;
+    if (searching === true) {
+      setSearching(false);
+      return;
     }
     navigate(-1);
   }
 
   return (
     <>
-      <Navigator heading="Select Contact" backHandler={backHandler}/>
+      <Navigator heading="Select Contact" backHandler={backHandler} />
       {!searching && (
         <>
           {" "}
@@ -106,7 +106,7 @@ const ContactsPage = () => {
             <SearchIcon />
           </div>
 
-          {name.length!==0 && <><div className="flex flex-row justify-between w-11/12 mx-auto mt-[27px]">
+          {name.length !== 0 && <><div className="flex flex-row justify-between w-11/12 mx-auto mt-[27px]">
             <p style={{ color: "#5E849C" }} className="text-sm font-semibold">
               Contacts on ImageBook
             </p>
@@ -114,28 +114,28 @@ const ContactsPage = () => {
               View All
             </p>
           </div>
-          <div className="flex flex-col gap-3 mt-[20px]">
-            {arr
-              .filter((obj) => obj.name.includes(name))
-              .map((each) => (
-                <ContactEach item={each} />
-              ))}
-          </div>
-          <div className="flex flex-row justify-between w-11/12 mx-auto mt-[27px]">
-            <p style={{ color: "#5E849C" }} className="text-sm font-semibold">
-              Invite on ImageBook
-            </p>
-            <p style={{ color: "#47B5FF" }} className="text-sm underline">
-              View All
-            </p>
-          </div>
-          <div className="flex flex-col gap-3 mt-[20px]">
-            {unreg
-              .filter((obj) => obj.name.includes(name))
-              .map((each) => (
-                <ContactEach item={each} type="unreg" />
-              ))}
-          </div></>}
+            <div className="flex flex-col gap-3 mt-[20px]">
+              {arr
+                .filter((obj) => obj.name.includes(name))
+                .map((each) => (
+                  <ContactEach item={each} />
+                ))}
+            </div>
+            <div className="flex flex-row justify-between w-11/12 mx-auto mt-[27px]">
+              <p style={{ color: "#5E849C" }} className="text-sm font-semibold">
+                Invite on ImageBook
+              </p>
+              <p style={{ color: "#47B5FF" }} className="text-sm underline">
+                View All
+              </p>
+            </div>
+            <div className="flex flex-col gap-3 mt-[20px]">
+              {unreg
+                .filter((obj) => obj.name.includes(name))
+                .map((each) => (
+                  <ContactEach item={each} type="unreg" />
+                ))}
+            </div></>}
         </div>
       )}
     </>
