@@ -14,6 +14,7 @@ import StopIcon from "@mui/icons-material/Stop";
 import PauseCircleOutlineIcon from "@mui/icons-material/PauseCircleOutline";
 import RadioButtonCheckedOutlinedIcon from '@mui/icons-material/RadioButtonCheckedOutlined';
 import axios from 'axios';
+import UploadingVideoComponent from "./UploadingVideoComponent";
 
 const VideoRecorder = () => {
   const navigate = useNavigate();
@@ -130,7 +131,7 @@ const VideoRecorder = () => {
 
       // console.log(myFile);
 
-      uploadFile(myFile);
+      // uploadFile(myFile);
 
 
       const url = URL.createObjectURL(blob);
@@ -318,7 +319,7 @@ const VideoRecorder = () => {
           </div>
         </div>
       )}
-      {submitted && <p>submitted</p>}
+      {submitted && <UploadingVideoComponent></UploadingVideoComponent>}
     </>
   );
 };
