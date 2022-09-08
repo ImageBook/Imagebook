@@ -8,6 +8,8 @@ import Profile from './Pages/Profile.js'
 import ContactsPage from './Pages/ContactsPage';
 import Notifications from './Pages/Notifications';
 import SearchPage from './components/SearchPage';
+import GiveRespectSearchPage from './components/GiveRespectSearchPage';
+import SuggestName from './components/SuggestName';
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
       <Route path='/:id' element={<Profile/>}></Route>
       <Route path='/notifications' element={<Notifications/>}></Route>
       <Route path='/search' element={<SearchPage/>}></Route>
+      <Route path='/giveResectSearch' element={<GiveRespectSearchPage/>}></Route>
+      <Route path='/suggestName' element={<SuggestName/>}></Route>
     </Routes>
   );
 }

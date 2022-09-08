@@ -10,7 +10,7 @@ import { borderRadius } from "@mui/system";
 const FooterHome = () => {
   const navigate = useNavigate();
   const openSearchHandler = () => {
-    navigate("/search");
+    navigate("/giveResectSearch");
   };
 
   return (
