@@ -19,14 +19,14 @@ const Profile = () => {
   ];
   const params = useParams();
   const [obj, setObj] = useState({});
-  const [type,setType] =useState('given')
+  const [type, setType] = useState('given')
   const navigate = useNavigate()
 
   useEffect(() => {
     setObj(arr.find((obj) => obj.number === params.id));
   }, []);
 
-  const videoOpenHandler = ()=>{
+  const videoOpenHandler = () => {
     navigate('/video')
   }
 
@@ -56,7 +56,7 @@ const Profile = () => {
         style={{ backgroundColor: "#EBF1F4" }}
         className=" flex text-center items-center w-11/12 mt-[24px] mx-auto h-[50px] rounded-md"
       >
-        <div style={{backgroundColor: type==='given'?'white':''}} className="flex gap-2 justify-center items-center w-1/2 ml-[2px] mr-[2px] h-[46px] rounded-md" onClick={(e)=>setType('given')}>
+        <div style={{ backgroundColor: type === 'given' ? 'white' : '' }} className="flex gap-2 justify-center items-center w-1/2 ml-[2px] mr-[2px] h-[46px] rounded-md" onClick={(e) => setType('given')}>
           <p style={{ color: "#416C87" }}>Given</p>
           <p
             style={{ borderColor: "#416C87" }}
@@ -65,7 +65,7 @@ const Profile = () => {
             205
           </p>
         </div>
-        <div style={{backgroundColor: type==='recieved'?'white':''}} className=" flex gap-2 justify-center items-center w-1/2 ml-[2px] mr-[2px] h-[46px] rounded-md" onClick={(e)=>setType('recieved')}>
+        <div style={{ backgroundColor: type === 'recieved' ? 'white' : '' }} className=" flex gap-2 justify-center items-center w-1/2 ml-[2px] mr-[2px] h-[46px] rounded-md" onClick={(e) => setType('recieved')}>
           <p style={{ color: "#416C87" }}>Recieved</p>
           <p
             style={{ borderColor: "#416C87" }}
@@ -75,8 +75,8 @@ const Profile = () => {
           </p>
         </div>
       </div>
-      <div style={{backgroundColor:"#1363DF",borderRadius:"100px"}} className="fixed bottom-[50px] right-[35px] text-white p-5 rounded-4xl" onClick={videoOpenHandler}>
-          <VideocamIcon style={{fontSize:"30px"}}/>
+      <div style={{ backgroundColor: "#1363DF", borderRadius: "100px" }} className="fixed bottom-[50px] right-[35px] text-white p-5 rounded-4xl" onClick={videoOpenHandler}>
+        <VideocamIcon style={{ fontSize: "30px" }} />
       </div>
     </>
   );

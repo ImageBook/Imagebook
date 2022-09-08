@@ -8,6 +8,7 @@ import Profile from './Pages/Profile.js'
 import ContactsPage from './Pages/ContactsPage';
 import Notifications from './Pages/Notifications';
 import SearchPage from './components/SearchPage';
+import ForNewUser from './components/ForNewUser';
 
 function App() {
   return (
