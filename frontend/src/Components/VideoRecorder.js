@@ -13,6 +13,7 @@ import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import StopIcon from "@mui/icons-material/Stop";
 import PauseCircleOutlineIcon from "@mui/icons-material/PauseCircleOutline";
 import RadioButtonCheckedOutlinedIcon from '@mui/icons-material/RadioButtonCheckedOutlined';
+import axios from 'axios';
 
 const VideoRecorder = () => {
   const navigate = useNavigate();
@@ -23,16 +24,16 @@ const VideoRecorder = () => {
   const [recordedChunks, setRecordedChunks] = React.useState([]);
   const isInitialMount = React.useRef(true);
   const [recording, recordingHandler] = useState("def");
-  const [paused,setPaused] = useState(false)
+  const [paused, setPaused] = useState(false)
   const [finalUrl, setFinalUrl] = useState("");
   const [cameraMode, setCameraMode] = useState("user");
   const [submitted, setSubmitted] = useState(false);
   const [newBlob, setNewBlob] = useState("");
-  const videoRef =  React.useRef(null);
+  const videoRef = React.useRef(null);
   const [videoTime, setVideoTime] = useState(0);
   const [progress, setProgress] = useState(0);
 
-  
+
   useEffect(() => {
     if (recording === "def") {
       mutePage();
@@ -86,11 +87,11 @@ const VideoRecorder = () => {
     [setRecordedChunks]
   );
 
-  const handlePauseClick = ()=>{
+  const handlePauseClick = () => {
     mediaRecorderRef.current.pause();
     setPaused(true)
   }
-  const handleResumeClick = ()=>{
+  const handleResumeClick = () => {
     mediaRecorderRef.current.resume();
     setPaused(false)
   }
@@ -102,6 +103,23 @@ const VideoRecorder = () => {
     handleDownload();
   }, [mediaRecorderRef, webcamRef, setCapturing]);
 
+  const uploadFile = file => {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append("upload_preset", "yfhzkfb5");
+    axios.post("https://api.cloudinary.com/v1_1/dtflws28q/video/upload", formData).then((response) => {
+      console.log('url', response.data.secure_url);
+      console.log(response);
+      if (response.status === 200) {
+        // setUrl(response.data.secure_url);
+        const data = {
+          recordedVideo: response.data.secure_url
+        };
+        console.log(data);
+      }
+    })
+  }
+
   const handleDownload = () => {
     if (recordedChunks?.length) {
       const blob = new Blob(recordedChunks, {
@@ -109,6 +127,11 @@ const VideoRecorder = () => {
       });
 
       const myFile = new File([blob], "demo.webm", { type: "video/webm" });
+
+      // console.log(myFile);
+
+      uploadFile(myFile);
+
 
       const url = URL.createObjectURL(blob);
       setNewBlob(myFile);
@@ -216,55 +239,55 @@ const VideoRecorder = () => {
                   )}
                   <div className={styles.controlsWrapper}>
                     <div className={styles.controls}>
-                    {!capturing ? (
-                      <button className={styles.buttonWhite}>
-                        <AutoAwesomeIcon />
-                      </button>
-                    ) : (
-                      <button className={styles.buttonWhite}>
-                        {!paused && <div onClick={handlePauseClick}><PauseCircleOutlineIcon /></div>}
-                        {paused && <div onClick={handleResumeClick} ><RadioButtonCheckedOutlinedIcon style={{color:"red"}}/></div>}
-                      </button>
-                    )}
-                    {capturing ? (
+                      {!capturing ? (
+                        <button className={styles.buttonWhite}>
+                          <AutoAwesomeIcon />
+                        </button>
+                      ) : (
+                        <button className={styles.buttonWhite}>
+                          {!paused && <div onClick={handlePauseClick}><PauseCircleOutlineIcon /></div>}
+                          {paused && <div onClick={handleResumeClick} ><RadioButtonCheckedOutlinedIcon style={{ color: "red" }} /></div>}
+                        </button>
+                      )}
+                      {capturing ? (
+                        <button
+                          className={styles.buttonWhite}
+                          onClick={handleStopCaptureClick}
+                          style={{ marginRight: "20px" }}
+                        >
+                          <CountdownCircleTimer
+                            isPlaying={(capturing && !paused)}
+                            duration={60}
+                            colors={["#FC5337"]}
+                            colorsTime={[60]}
+                            strokeWidth={5}
+                            rotation={0}
+                            size={70}
+                            onComplete={handleStopCaptureClick}
+                          ></CountdownCircleTimer>
+                          <StopIcon
+                            style={{
+                              color: "#FC5337",
+                              position: "absolute",
+                              marginTop: "-50px",
+                              fontSize: "2rem",
+                              marginLeft: "-5px",
+                            }}
+                          />
+                        </button>
+                      ) : (
+                        <button
+                          className={styles.button}
+                          onClick={handleStartCaptureClick}
+                        />
+                      )}
                       <button
                         className={styles.buttonWhite}
-                        onClick={handleStopCaptureClick}
-                        style={{ marginRight: "20px" }}
+                        onClick={cameraInvertHandler}
                       >
-                        <CountdownCircleTimer
-                          isPlaying={(capturing && !paused)}
-                          duration={60}
-                          colors={["#FC5337"]}
-                          colorsTime={[60]}
-                          strokeWidth={5}
-                          rotation={0}
-                          size={70}
-                          onComplete={handleStopCaptureClick}
-                        ></CountdownCircleTimer>
-                        <StopIcon
-                          style={{
-                            color: "#FC5337",
-                            position: "absolute",
-                            marginTop: "-50px",
-                            fontSize: "2rem",
-                            marginLeft: "-5px",
-                          }}
-                        />
+                        <FlipCameraAndroidIcon />
                       </button>
-                    ) : (
-                      <button
-                        className={styles.button}
-                        onClick={handleStartCaptureClick}
-                      />
-                    )}
-                    <button
-                      className={styles.buttonWhite}
-                      onClick={cameraInvertHandler}
-                    >
-                      <FlipCameraAndroidIcon />
-                    </button>
-                  </div>
+                    </div>
                   </div>
                 </>
               )}
@@ -288,7 +311,7 @@ const VideoRecorder = () => {
                     SetRecordingHandler={SetRecordingHandler}
                     progress={progress}
                   />
-                 
+
                 </>
               )}
             </div>
