@@ -30,13 +30,16 @@ const Profile = () => {
     navigate('/video')
   }
 
+  const backHandler = ()=>{
+    navigate('/home')
+  }
   return (
     <>
-      <Navigator heading="Profile" icon="share" />
+      <Navigator heading="Profile" backHandler={backHandler} icon="share" />
       <div className="flex flex-col items-center gap-3 justify-center mt-[40px]">
         <img
           style={{ width: "75px", height: "75px", borderRadius: "50%" }}
-          src={obj?.img}
+          src={obj?.img?obj?.img:'https://i.stack.imgur.com/l60Hf.png'}
         />
         <p className="text-xl font-semibold">{obj?.name}</p>
         <p style={{ color: "#5E849C" }} className="text-sm font-semibold">

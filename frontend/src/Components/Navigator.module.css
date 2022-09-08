@@ -1,14 +1,13 @@
 .navigation{
     height:50px;
-    padding: 15px;
-    padding-top: 40px;
+    padding-top: 1.5rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     z-index:100;
     background: transparent;
-    width:93%;
+    width:91%;
     max-width: 100%;
     color:white;
     margin: auto;

@@ -11,6 +11,7 @@ import SearchPage from './components/SearchPage';
 import GiveRespectSearchPage from './components/GiveRespectSearchPage';
 import SuggestName from './components/SuggestName';
 import ForNewUser from './components/ForNewUser';
+import GiveRespectContacts from './components/GiveRespectContacts';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
       <Route path='/search' element={<SearchPage/>}></Route>
       <Route path='/giveResectSearch' element={<GiveRespectSearchPage/>}></Route>
       <Route path='/suggestName' element={<SuggestName/>}></Route>
+      <Route path='/giveRespectContacts' element={<GiveRespectContacts/>}></Route>
     </Routes>
   );
 }

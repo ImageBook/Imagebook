@@ -8,6 +8,7 @@ import search from "../images/Notifications/search.png";
 import ContactEach from "./ContactEach";
 import { useState } from "react";
 import ohNoImage from "../Assets/ohNoImage.png";
+import PhoneInput from "react-phone-number-input";
 
 const GiveRespectSearchPage = () => {
   const arr = [
@@ -72,11 +73,12 @@ const GiveRespectSearchPage = () => {
       </div>
       <div className="">
         <div className="w-11/12 mx-auto mt-12 flex items-center space-x-3">
-          <input
-            className="focus:outline-none border-2 border-[#EBF1F4] rounded-[10px] w-[300px] h-12 pl-3 text-[#5E849C] text-lg"
-            type="number"
-            placeholder="Type Here!"
-            onChange={(e) => setInput(e.target.value)}
+        <PhoneInput
+            className="border-[2px] border-[#EBF1F4] rounded-[10px] p-[10px] h-12 text-lg"
+            defaultCountry="IN"
+            placeholder="Enter phone number"
+            value={input}
+            onChange={setInput}
           />
           <div
             className="w-[44px] h-12 shadow-lg rounded-xl flex items-center justify-center"
@@ -85,7 +87,7 @@ const GiveRespectSearchPage = () => {
             <img src={person} alt="" />
           </div>
         </div>
-        {input.length === 0 && (
+        {!input && (
           <div className="flex flex-col items-center justify-center space-y-3 mt-24">
             <img src={search} alt="" />
             <p className="text-[#416C87] text-sm text-center">
@@ -93,28 +95,11 @@ const GiveRespectSearchPage = () => {
             </p>
           </div>
         )}
-        {input.length !== 0 &&
+        {input?.length !== 0 &&
           unreg.filter((obj) => obj.number.includes(input)).length !== 0 &&
           arr.filter((obj) => obj.number.includes(input)).length !== 0 && (
             <>
-              <div className="flex flex-row justify-between w-11/12 mx-auto mt-[27px]">
-                <p
-                  style={{ color: "#5E849C" }}
-                  className="text-sm font-semibold"
-                >
-                  Phonebook
-                </p>
-                <p style={{ color: "#47B5FF" }} className="text-sm underline">
-                  View All
-                </p>
-              </div>
-              <div className="flex flex-col gap-3 mt-[20px]">
-                {unreg
-                  .filter((obj) => obj.number.includes(input))
-                  .map((each) => (
-                    <ContactEach item={each} type="unreg" />
-                  ))}
-              </div>
+              
               <div className="flex flex-row justify-between w-11/12 mx-auto mt-[27px]">
                 <p
                   style={{ color: "#5E849C" }}
@@ -135,7 +120,7 @@ const GiveRespectSearchPage = () => {
               </div>
             </>
           )}
-        {input.length !== 0 &&
+        {input &&
           unreg.filter((obj) => obj.number.includes(input)).length === 0 &&
           arr.filter((obj) => obj.number.includes(input)).length === 0 && (
             <>

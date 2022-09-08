@@ -1,6 +1,6 @@
 
 
-const ContactEach = (props) => {
+const GiveRespectEachContact = (props) => {
     
     return (
         <div className="">
@@ -19,4 +19,4 @@ const ContactEach = (props) => {
         </div>
     )
 }
-export default ContactEach;
+export default GiveRespectEachContact;

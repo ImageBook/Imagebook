@@ -4,9 +4,9 @@ import ContactEach from "../components/ContactEach";
 import { useEffect, useState } from "react";
 import PersonIcon from "@mui/icons-material/Person";
 import { Navigate, useNavigate } from "react-router-dom";
-import ForNewUser from "../components/ForNewUser";
+import GiveRespectEachContact from "./GiveRespectEachContact";
 
-const ContactsPage = () => {
+const GiveRespectContacts = () => {
   const arr = [
     {
       name: "Aarush Mishra",
@@ -73,11 +73,23 @@ const ContactsPage = () => {
             </div>
             <div className="flex flex-col gap-3 mt-[20px]">
               {arr.map((each) => (
-                <ContactEach item={each} />
+                <GiveRespectEachContact item={each} />
               ))}
             </div>
           </div>
-          
+          <div className="flex flex-row justify-between w-11/12 mx-auto mt-[27px]">
+            <p style={{ color: "#5E849C" }} className="text-sm font-semibold">
+              Invite on ImageBook
+            </p>
+            <p style={{ color: "#47B5FF" }} className="text-sm underline">
+              View All
+            </p>
+          </div>
+          <div className="flex flex-col gap-3 mt-[20px]">
+            {unreg.map((each) => (
+              <GiveRespectEachContact item={each} type="unreg" />
+            ))}
+          </div>
         </>
       )}
       {searching && (
@@ -108,14 +120,14 @@ const ContactsPage = () => {
               {arr
                 .filter((obj) => obj.name.includes(name))
                 .map((each) => (
-                  <ContactEach item={each} />
+                  <GiveRespectEachContact item={each} />
                 ))}
             </div>
-            </>}
+           </>}
         </div>
       )}
       
     </>
   );
 };
-export default ContactsPage;
+export default GiveRespectContacts;
