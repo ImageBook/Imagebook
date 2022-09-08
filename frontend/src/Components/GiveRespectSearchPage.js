@@ -44,7 +44,7 @@ const GiveRespectSearchPage = () => {
     navigate("/contacts");
   };
   const suggestNameHandler = ()=>{
-    navigate('/suggestName')
+    navigate('/suggestName',{state:{id:input}})
   }
   
   return (
