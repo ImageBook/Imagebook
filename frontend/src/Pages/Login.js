@@ -129,7 +129,7 @@ const Login = () => {
                 .then(res => res.json())
                 .then(data => {
                     // console.log('data', data);
-                    if (!data.user) {
+                    if (!data) {
                         setHidden(true);
                     }
                     else {
