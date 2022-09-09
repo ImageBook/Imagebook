@@ -13,7 +13,7 @@ const ContinueByName = ({ number }) => {
             number: number,
             name: userName
         };
-        fetch('http://localhost:5000/users', {
+        fetch('http://localhost:5000/postUsers', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
