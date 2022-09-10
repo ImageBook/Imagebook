@@ -114,36 +114,36 @@ const VideoRecorder = () => {
       console.log('url', response.data.secure_url);
       console.log(response);
       if (response.status === 200) {
-        
+
         let link = response.data.secure_url;
-        let obj={
-          number:userCtx.loggedInUser.number,
-          respects:{
-            postedFor:location.state.id,
-            url:link,
+        let obj = {
+          number: userCtx.loggedInUser.number,
+          respects: {
+            postedFor: location.state.id,
+            url: link,
             postedBy: userCtx.loggedInUser.number,
-            cameraUsed:cameraMode
+            cameraUsed: cameraMode
           }
         }
-        let obj1={
-          number:location.state.id,
-          respects:{
-            postedFor:location.state.id,
-            url:link,
+        let obj1 = {
+          number: location.state.id,
+          respects: {
+            postedFor: location.state.id,
+            url: link,
             postedBy: userCtx.loggedInUser.number,
-            cameraUsed:cameraMode
+            cameraUsed: cameraMode
           }
         }
-        axios.post(`http://localhost:5000/updateGivenRespects`,obj).then(()=>{
-          axios.post(`http://localhost:5000/updateRecievedRespects`,obj1).then(()=>{
+        axios.post(`https://imagebook-digilabs.herokuapp.com/updateGivenRespects`, obj).then(() => {
+          axios.post(`https://imagebook-digilabs.herokuapp.com/updateRecievedRespects`, obj1).then(() => {
             console.log("done");
           })
         })
 
-      
-        
-        
-        
+
+
+
+
       }
     })
   }
@@ -184,7 +184,7 @@ const VideoRecorder = () => {
     console.log(progress)
   };
 
-  const submitHandler =  () => {
+  const submitHandler = () => {
     setSubmitted(true);
     uploadFile(newBlob)
   };
