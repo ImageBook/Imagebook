@@ -18,8 +18,11 @@ import version from '../images/Home/version.png';
 import { useNavigate } from 'react-router-dom';
 import auth from '../firebase.init';
 import { signOut } from "firebase/auth";
+import { useContext } from 'react';
+import UserContext from '../store/userContext';
 
 const Home = () => {
+    const userCtx = useContext(UserContext);
     const [sidebar, setSidebar] = useState(false);
     const navigate = useNavigate();
     const goToSearch = () => {
@@ -68,11 +71,11 @@ const Home = () => {
                                 <img onClick={() => setSidebar(false)} src={xIcon} alt="" />
                             </div>
                             <div className='flex items-center space-x-3 mt-3 mb-5'>
-                                <img src={user} alt="" />
+                                <img style={{width:"50px",height:"50px",borderRadius:"100px"}} src={userCtx.loggedInUser.image} alt="" />
                                 <div className=''>
                                     <div className='flex items-center space-x-2'>
-                                        <p className='text-[#1B2328]'>Bhageerathi Patel</p>
-                                        <img src={checkIcon} alt="" />
+                                        <p className='text-[#1B2328]'>{userCtx.loggedInUser.name}</p>
+                                        {userCtx.loggedInUser.verified && <img src={checkIcon} alt="" />}
                                     </div>
                                     <button className='text-[#5E849C] text-xs font-semibold'>Edit Profile</button>
                                 </div>

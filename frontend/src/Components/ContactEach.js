@@ -1,10 +1,15 @@
+import { useNavigate } from "react-router-dom";
 
 
 const ContactEach = (props) => {
-    
+    const navigate = useNavigate();
+    const openProfileHandler = ()=>{
+        navigate(`/${props.item.number}`)
+    }
+
     return (
-        <div className="">
-            <div style={{ backgroundColor: "#F5F8FA" }} className="flex gap-2 w-11/12 mx-auto p-[12px]  rounded-xl" >
+        
+            <div style={{ backgroundColor: "#F5F8FA" }} className="flex gap-2 w-11/12 mx-auto p-[12px]  rounded-xl" onClick={openProfileHandler}>
                 {props.type !== 'unreg' && <img style={{ borderRadius: "200px", width: "60px", height: "60px", marginRight: "12px" }} src={props.item.img} />}
                 {props.type === 'unreg' && <img style={{ borderRadius: "200px", width: "60px", height: "60px", marginRight: "12px" }} src="https://i.stack.imgur.com/l60Hf.png" />}
                 <div>
@@ -16,7 +21,7 @@ const ContactEach = (props) => {
                 </div>
             </div >
             
-        </div>
+        
     )
 }
 export default ContactEach;

@@ -1,7 +1,10 @@
 const mongoose = require('mongoose')
 
 const user={
-    registered:Boolean,
+    registered:{
+        type:Boolean,
+        default:false
+    },
     accountCreationDate:{
         type:Date,
         default:Date.now()
@@ -26,7 +29,25 @@ const user={
     },
     dateOfBirth:String,
     gender:String,
-    respects:[{
+    givenRespects:[{
+        respectLink:String,
+        postedBy:String,
+        cameraUsed:String,
+        selectedType:String,
+        url:String,
+        time:{
+            type:Date,
+            default:Date.now()
+        },
+        reaction:{
+            likes: {
+                type:Number,
+                default:0
+            }
+        }
+
+    }],
+    recievedRespects: [{
         respectLink:String,
         postedBy:String,
         cameraUsed:String,

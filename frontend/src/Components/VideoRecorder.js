@@ -1,7 +1,7 @@
 import Navigator from "./Navigator";
 // import axios from 'axios'
 import styles from "./VideoRecorder.module.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import React, { useEffect } from "react";
 import Webcam from "react-webcam";
@@ -15,10 +15,12 @@ import PauseCircleOutlineIcon from "@mui/icons-material/PauseCircleOutline";
 import RadioButtonCheckedOutlinedIcon from '@mui/icons-material/RadioButtonCheckedOutlined';
 import axios from 'axios';
 import UploadingVideoComponent from "./UploadingVideoComponent";
+import UserContext from "../store/userContext";
 
 const VideoRecorder = () => {
+  const userCtx = useContext(UserContext)
   const navigate = useNavigate();
-  //   const location = useLocation();
+  const location = useLocation();
   const webcamRef = React.useRef(null);
   const mediaRecorderRef = React.useRef(null);
   const [capturing, setCapturing] = React.useState(false);
@@ -112,11 +114,34 @@ const VideoRecorder = () => {
       console.log('url', response.data.secure_url);
       console.log(response);
       if (response.status === 200) {
-        // setUrl(response.data.secure_url);
-        const data = {
-          recordedVideo: response.data.secure_url
-        };
-        console.log(data);
+        
+        let link = response.data.secure_url;
+        let obj={
+          number:userCtx.loggedInUser.number,
+          respects:{
+            url:link,
+            postedBy: userCtx.loggedInUser.number,
+            cameraUsed:cameraMode
+          }
+        }
+        let obj1={
+          number:location.state.id,
+          respects:{
+            url:link,
+            postedBy: userCtx.loggedInUser.number,
+            cameraUsed:cameraMode
+          }
+        }
+        axios.post(`http://localhost:5000/updateGivenRespects`,obj).then(()=>{
+          axios.post(`http://localhost:5000/updateRecievedRespects`,obj1).then(()=>{
+            console.log("done");
+          })
+        })
+
+      
+        
+        
+        
       }
     })
   }
@@ -128,11 +153,6 @@ const VideoRecorder = () => {
       });
 
       const myFile = new File([blob], "demo.webm", { type: "video/webm" });
-
-      // console.log(myFile);
-
-      // uploadFile(myFile);
-
 
       const url = URL.createObjectURL(blob);
       setNewBlob(myFile);
@@ -160,26 +180,9 @@ const VideoRecorder = () => {
     console.log(progress)
   };
 
-  const submitHandler = async () => {
+  const submitHandler =  () => {
     setSubmitted(true);
-    // get secure url from our server
-    //       const { url } = await fetch("https://respects-task.herokuapp.com/s3Url").then(res => res.json())
-
-    //       // post the image direclty to the s3 bucket
-    //       await fetch(url, {
-    //         method: "PUT",
-    //         headers: {
-    //           "Access-Control-Allow-Origin":"*",
-    //           "Access-Control-Request-Headers":"*",
-    //           "Content-Type": "video/webm"
-    //         },
-    //         body: newBlob
-    //       })
-
-    //       const imageUrl = url.split('?')[0]
-
-    //    // post requst to my server
-    //       postData(imageUrl);
+    uploadFile(newBlob)
   };
 
   //   const postData = (url)=>{

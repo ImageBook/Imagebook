@@ -3,14 +3,20 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useEffect, useState } from "react";
 import respect from "../Assets/respect.png";
 import goodLuck from "../Assets/goodLuck.png";
+import { useNavigate } from "react-router-dom";
 
 const RespectModal = (props) => {
   const [modalAnim, SetModalAnim] = useState(false);
   const [modalValaue, setModalValue] = useState("");
+  const navigate = useNavigate()
 
   useEffect(() => {
     SetModalAnim(true);
   }, []);
+
+  const videoNavigateHandler = ()=>{
+    navigate('/video',{state:{id:props.number}});
+  }
 
   return (
     <div>
@@ -83,6 +89,7 @@ const RespectModal = (props) => {
               marginBottom: "24px",
             }}
             className="absolute bottom-0"
+            onClick={videoNavigateHandler}
           >
             Record Respect
           </button>

@@ -12,8 +12,11 @@ import ContinueByName from '../components/ContinueByName';
 import OtpInput from 'react18-input-otp';
 import login from '../images/num-pad/checkmark-circle-2.png';
 import { useNavigate } from 'react-router-dom';
+import UserContext from '../store/userContext';
+import { useContext } from 'react';
 
 const Login = () => {
+    const userCtx = useContext(UserContext);
     // login screen
     const [number, setNumber] = useState('');
     const [valid, setValid] = useState(false);
@@ -129,10 +132,11 @@ const Login = () => {
                 .then(res => res.json())
                 .then(data => {
                     // console.log('data', data);
-                    if (!data) {
+                    if (data.length===0) {
                         setHidden(true);
                     }
                     else {
+                        userCtx.setLogin(data[0]);
                         navigate('/home');
                     }
                 })
