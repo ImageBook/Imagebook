@@ -59,143 +59,16 @@ const ForNewUser = ({ setModal, number }) => {
 
   return (
     <>
-      <div className={styles.backdrop} onClick={(e)=>setModal(false)}  />
+      <div className={styles.backdrop} onClick={(e) => setModal(false)} />
 
-        <div className={`${styles.modal} bg-white shadow-lg mb-4 rounded-3xl h-[90vh] relative w-11/12 mx-auto flex flex-col items-center justify-center`}>
-          {/* <img onClick={() => setModal(false)} className='absolute top-8 right-8' src={xIcon} alt="" /> */}
-          {!no &&
-            !yes &&
-            !bondingLevel &&
-            !commitmentLevel &&
-            !responsibilityLevel &&
-            !lastModal && (
-              <>
-                <img
-                  onClick={() => setModal(false)}
-                  className="absolute top-8 right-8"
-                  src={xIcon}
-                  alt=""
-                />
-                <img className="mb-4" src={icon} alt="" />
-                <p className="font-semibold text-lg px-2 mb-5">
-                  Do you know <span>{number}</span> ?
-                </p>
-                <div className="flex items-center space-x-3">
-                  <button
-                    onClick={yesClicked}
-                    className="rounded-lg bg-[#47B5FF] text-white w-[55px] h-8 font-semibold text-xs"
-                  >
-                    Yes
-                  </button>
-                  <button
-                    onClick={noClicked}
-                    className="rounded-lg bg-[#F2F6F8] text-[#416C87] w-[55px] h-8 font-semibold text-xs"
-                  >
-                    No
-                  </button>
-                </div>
-              </>
-            )}
-          {yes &&
-            !bondingLevel &&
-            !commitmentLevel &&
-            !responsibilityLevel &&
-            !no && (
-              <>
-                <img
-                  onClick={() => setModal(false)}
-                  className="absolute top-8 right-8"
-                  src={xIcon}
-                  alt=""
-                />
-                <img
-                  data-aos="fade-left"
-                  data-aos-duration="500"
-                  className="mb-4"
-                  src={icon1}
-                  alt=""
-                />
-                <p
-                  data-aos="fade-left"
-                  data-aos-easing="linear"
-                  data-aos-duration="500"
-                  className="font-semibold text-[22px] text-[#06283D] px-2 mb-2"
-                >
-                  Unlock Profile!
-                </p>
-                <p
-                  data-aos="fade-left"
-                  data-aos-duration="500"
-                  className="text-sm text-[#1B2328] "
-                >
-                  By paying 5 trust coin
-                </p>
-                <div
-                  data-aos="fade-left"
-                  data-aos-duration="500"
-                  className="absolute bottom-6 bg-[#1363DF] w-[156px] h-[52px] rounded-lg flex items-center justify-center"
-                >
-                  <button
-                    data-aos="fade-left"
-                    data-aos-duration="500"
-                    onClick={bondingModal}
-                    className="text-lg font-semibold text-white"
-                  >
-                    Get Free 5 Tc
-                  </button>
-                </div>
-              </>
-            )}
-          {no &&
-            !yes &&
-            !bondingLevel &&
-            !commitmentLevel &&
-            !responsibilityLevel && (
-              <>
-                <img
-                  onClick={() => setModal(false)}
-                  className="absolute top-8 right-8"
-                  src={xIcon}
-                  alt=""
-                />
-                <img
-                  data-aos="fade-left"
-                  data-aos-duration="500"
-                  className="mb-4"
-                  src={icon1}
-                  alt=""
-                />
-                <p
-                  data-aos="fade-left"
-                  data-aos-duration="500"
-                  className="font-semibold text-[22px] text-[#06283D] px-2 mb-2"
-                >
-                  Unlock Profile!
-                </p>
-                <p
-                  data-aos="fade-left"
-                  data-aos-duration="500"
-                  className="text-sm text-[#1B2328] "
-                >
-                  By paying 5 trust coin
-                </p>
-                <div
-                  data-aos="fade-left"
-                  data-aos-duration="500"
-                  className="absolute bottom-6 bg-[#1363DF] w-[156px] h-[52px] rounded-lg flex items-center justify-center"
-                >
-                  <Link
-                    data-aos="fade-left"
-                    data-aos-duration="500"
-                    to={`/${number}`}
-                    className="text-lg font-semibold text-white"
-                  >
-                    Pay Now
-                  </Link>
-                </div>
-              </>
-            )}
-          {bondingLevel && (
+      <div className={`${styles.modal} bg-white shadow-lg mb-4 rounded-3xl h-[90vh] relative w-11/12 mx-auto flex flex-col items-center justify-center`}>
+        {/* <img onClick={() => setModal(false)} className='absolute top-8 right-8' src={xIcon} alt="" /> */}
+        {!no &&
+          !yes &&
+          !bondingLevel &&
+          !commitmentLevel &&
+          !responsibilityLevel &&
+          !lastModal && (
             <>
               <img
                 onClick={() => setModal(false)}
@@ -203,64 +76,81 @@ const ForNewUser = ({ setModal, number }) => {
                 src={xIcon}
                 alt=""
               />
-              <div className="flex items-center justify-center">
-                <p className="text-xs font-semibold absolute top-8">
-                  1 out of 3
-                </p>
+              <img className="mb-4" src={icon} alt="" />
+              <p className="font-semibold text-lg px-2 mb-5">
+                Do you know <span>{number}</span> ?
+              </p>
+              <div className="flex items-center space-x-3">
+                <button
+                  onClick={yesClicked}
+                  className="rounded-lg bg-[#47B5FF] text-white w-[55px] h-8 font-semibold text-xs"
+                >
+                  Yes
+                </button>
+                <button
+                  onClick={noClicked}
+                  className="rounded-lg bg-[#F2F6F8] text-[#416C87] w-[55px] h-8 font-semibold text-xs"
+                >
+                  No
+                </button>
               </div>
+            </>
+          )}
+        {yes &&
+          !bondingLevel &&
+          !commitmentLevel &&
+          !responsibilityLevel &&
+          !no && (
+            <>
+              <img
+                onClick={() => setModal(false)}
+                className="absolute top-8 right-8"
+                src={xIcon}
+                alt=""
+              />
               <img
                 data-aos="fade-left"
                 data-aos-duration="500"
                 className="mb-4"
-                src={icon}
+                src={icon1}
                 alt=""
               />
               <p
                 data-aos="fade-left"
+                data-aos-easing="linear"
                 data-aos-duration="500"
-                className="font-semibold text-lg px-2 mb-5 text-center"
+                className="font-semibold text-[22px] text-[#06283D] px-2 mb-2"
               >
-                What Is Bonding level Of {number} ?
+                Unlock Profile!
+              </p>
+              <p
+                data-aos="fade-left"
+                data-aos-duration="500"
+                className="text-sm text-[#1B2328] "
+              >
+                By paying 5 trust coin
               </p>
               <div
                 data-aos="fade-left"
                 data-aos-duration="500"
-                className="flex items-center justify-center space-x-2"
+                className="absolute bottom-6 bg-[#1363DF] w-[156px] h-[52px] rounded-lg flex items-center justify-center"
               >
                 <button
-                  onClick={showCommitmentModal}
-                  className="w-[36px] h-[19px] font-semibold text-xs rounded bg-[#CCEAFF] text-[#47B5FF]"
+                  data-aos="fade-left"
+                  data-aos-duration="500"
+                  onClick={bondingModal}
+                  className="text-lg font-semibold text-white"
                 >
-                  20%
-                </button>
-                <button
-                  onClick={showCommitmentModal}
-                  className="w-[36px] h-[19px] font-semibold text-xs rounded bg-[#FFEDCC] text-[#FFAE1B]"
-                >
-                  40%
-                </button>
-                <button
-                  onClick={showCommitmentModal}
-                  className="w-[36px] h-[19px] font-semibold text-xs rounded bg-[#E2CCFF] text-[#9747FF]"
-                >
-                  60%
-                </button>
-                <button
-                  onClick={showCommitmentModal}
-                  className="w-[36px] h-[19px] font-semibold text-xs rounded bg-[#144A6B] text-[#FFFFFF]"
-                >
-                  80%
-                </button>
-                <button
-                  onClick={showCommitmentModal}
-                  className="w-[40px] h-[19px] font-semibold text-xs rounded bg-[#D4F7E9] text-[#24BF81]"
-                >
-                  100%
+                  Get Free 5 Tc
                 </button>
               </div>
             </>
           )}
-          {commitmentLevel && (
+        {no &&
+          !yes &&
+          !bondingLevel &&
+          !commitmentLevel &&
+          !responsibilityLevel && (
             <>
               <img
                 onClick={() => setModal(false)}
@@ -268,122 +158,26 @@ const ForNewUser = ({ setModal, number }) => {
                 src={xIcon}
                 alt=""
               />
-              <div className="flex items-center justify-center">
-                <p className="text-xs font-semibold absolute top-8">
-                  2 out of 3
-                </p>
-              </div>
-              <img className="mb-4" src={icon} alt="" />
-              <p className="font-semibold text-lg px-2 mb-5 text-center">
-                What Is Commitment level Of {number} ?
-              </p>
-              <div className="flex items-center justify-center space-x-2">
-                <button
-                  onClick={showResponsibilityModal}
-                  className="w-[36px] h-[19px] font-semibold text-xs rounded bg-[#CCEAFF] text-[#47B5FF]"
-                >
-                  20%
-                </button>
-                <button
-                  onClick={showResponsibilityModal}
-                  className="w-[36px] h-[19px] font-semibold text-xs rounded bg-[#FFEDCC] text-[#FFAE1B]"
-                >
-                  40%
-                </button>
-                <button
-                  onClick={showResponsibilityModal}
-                  className="w-[36px] h-[19px] font-semibold text-xs rounded bg-[#E2CCFF] text-[#9747FF]"
-                >
-                  60%
-                </button>
-                <button
-                  onClick={showResponsibilityModal}
-                  className="w-[36px] h-[19px] font-semibold text-xs rounded bg-[#144A6B] text-[#FFFFFF]"
-                >
-                  80%
-                </button>
-                <button
-                  onClick={showResponsibilityModal}
-                  className="w-[40px] h-[19px] font-semibold text-xs rounded bg-[#D4F7E9] text-[#24BF81]"
-                >
-                  100%
-                </button>
-              </div>
-            </>
-          )}
-          {responsibilityLevel && (
-            <>
-              <img
-                onClick={() => setModal(false)}
-                className="absolute top-8 right-8"
-                src={xIcon}
-                alt=""
-              />
-              <div className="flex items-center justify-center">
-                <p className="text-xs font-semibold absolute top-8">
-                  3 out of 3
-                </p>
-              </div>
-              <img className="mb-4" src={icon} alt="" />
-              <p className="font-semibold text-lg px-2 mb-5 text-center">
-                What Is Responsibility level Of {number} ?
-              </p>
-              <div className="flex items-center justify-center space-x-2">
-                <button
-                  onClick={showLastModal}
-                  className="w-[36px] h-[19px] font-semibold text-xs rounded bg-[#CCEAFF] text-[#47B5FF]"
-                >
-                  20%
-                </button>
-                <button
-                  onClick={showLastModal}
-                  className="w-[36px] h-[19px] font-semibold text-xs rounded bg-[#FFEDCC] text-[#FFAE1B]"
-                >
-                  40%
-                </button>
-                <button
-                  onClick={showLastModal}
-                  className="w-[36px] h-[19px] font-semibold text-xs rounded bg-[#E2CCFF] text-[#9747FF]"
-                >
-                  60%
-                </button>
-                <button
-                  onClick={showLastModal}
-                  className="w-[36px] h-[19px] font-semibold text-xs rounded bg-[#144A6B] text-[#FFFFFF]"
-                >
-                  80%
-                </button>
-                <button
-                  onClick={showLastModal}
-                  className="w-[40px] h-[19px] font-semibold text-xs rounded bg-[#D4F7E9] text-[#24BF81]"
-                >
-                  100%
-                </button>
-              </div>
-            </>
-          )}
-          {lastModal && (
-            <>
               <img
                 data-aos="fade-left"
                 data-aos-duration="500"
-                className="mb-3"
-                src={group}
+                className="mb-4"
+                src={icon1}
                 alt=""
               />
               <p
                 data-aos="fade-left"
                 data-aos-duration="500"
-                className="font-semibold text-[22px] text-[#06283D] mb-2"
+                className="font-semibold text-[22px] text-[#06283D] px-2 mb-2"
               >
-                Hurrah
+                Unlock Profile!
               </p>
               <p
                 data-aos="fade-left"
                 data-aos-duration="500"
-                className="text-[#1B2328] text-sm px-14 text-center"
+                className="text-sm text-[#1B2328] "
               >
-                You have received 5 trust coin to unlock one profile.
+                By paying 5 trust coin
               </p>
               <div
                 data-aos="fade-left"
@@ -396,13 +190,219 @@ const ForNewUser = ({ setModal, number }) => {
                   to={`/${number}`}
                   className="text-lg font-semibold text-white"
                 >
-                  Unlock Now
+                  Pay Now
                 </Link>
               </div>
             </>
           )}
-        </div>
-      
+        {bondingLevel && (
+          <>
+            <img
+              onClick={() => setModal(false)}
+              className="absolute top-8 right-8"
+              src={xIcon}
+              alt=""
+            />
+            <div className="flex items-center justify-center">
+              <p className="text-xs font-semibold absolute top-8">
+                1 out of 3
+              </p>
+            </div>
+            <img
+              data-aos="fade-left"
+              data-aos-duration="500"
+              className="mb-4"
+              src={icon}
+              alt=""
+            />
+            <p
+              data-aos="fade-left"
+              data-aos-duration="500"
+              className="font-semibold text-lg px-2 mb-5 text-center"
+            >
+              What Is Bonding level Of {number} ?
+            </p>
+            <div
+              data-aos="fade-left"
+              data-aos-duration="500"
+              className="flex items-center justify-center space-x-2"
+            >
+              <button
+                onClick={showCommitmentModal}
+                className="w-[36px] h-[19px] font-semibold text-xs rounded bg-[#CCEAFF] text-[#47B5FF]"
+              >
+                20%
+              </button>
+              <button
+                onClick={showCommitmentModal}
+                className="w-[36px] h-[19px] font-semibold text-xs rounded bg-[#FFEDCC] text-[#FFAE1B]"
+              >
+                40%
+              </button>
+              <button
+                onClick={showCommitmentModal}
+                className="w-[36px] h-[19px] font-semibold text-xs rounded bg-[#E2CCFF] text-[#9747FF]"
+              >
+                60%
+              </button>
+              <button
+                onClick={showCommitmentModal}
+                className="w-[36px] h-[19px] font-semibold text-xs rounded bg-[#144A6B] text-[#FFFFFF]"
+              >
+                80%
+              </button>
+              <button
+                onClick={showCommitmentModal}
+                className="w-[40px] h-[19px] font-semibold text-xs rounded bg-[#D4F7E9] text-[#24BF81]"
+              >
+                100%
+              </button>
+            </div>
+          </>
+        )}
+        {commitmentLevel && (
+          <>
+            <img
+              onClick={() => setModal(false)}
+              className="absolute top-8 right-8"
+              src={xIcon}
+              alt=""
+            />
+            <div className="flex items-center justify-center">
+              <p className="text-xs font-semibold absolute top-8">
+                2 out of 3
+              </p>
+            </div>
+            <img className="mb-4" src={icon} alt="" />
+            <p className="font-semibold text-lg px-2 mb-5 text-center">
+              What Is Commitment level Of {number} ?
+            </p>
+            <div className="flex items-center justify-center space-x-2">
+              <button
+                onClick={showResponsibilityModal}
+                className="w-[36px] h-[19px] font-semibold text-xs rounded bg-[#CCEAFF] text-[#47B5FF]"
+              >
+                20%
+              </button>
+              <button
+                onClick={showResponsibilityModal}
+                className="w-[36px] h-[19px] font-semibold text-xs rounded bg-[#FFEDCC] text-[#FFAE1B]"
+              >
+                40%
+              </button>
+              <button
+                onClick={showResponsibilityModal}
+                className="w-[36px] h-[19px] font-semibold text-xs rounded bg-[#E2CCFF] text-[#9747FF]"
+              >
+                60%
+              </button>
+              <button
+                onClick={showResponsibilityModal}
+                className="w-[36px] h-[19px] font-semibold text-xs rounded bg-[#144A6B] text-[#FFFFFF]"
+              >
+                80%
+              </button>
+              <button
+                onClick={showResponsibilityModal}
+                className="w-[40px] h-[19px] font-semibold text-xs rounded bg-[#D4F7E9] text-[#24BF81]"
+              >
+                100%
+              </button>
+            </div>
+          </>
+        )}
+        {responsibilityLevel && (
+          <>
+            <img
+              onClick={() => setModal(false)}
+              className="absolute top-8 right-8"
+              src={xIcon}
+              alt=""
+            />
+            <div className="flex items-center justify-center">
+              <p className="text-xs font-semibold absolute top-8">
+                3 out of 3
+              </p>
+            </div>
+            <img className="mb-4" src={icon} alt="" />
+            <p className="font-semibold text-lg px-2 mb-5 text-center">
+              What Is Responsibility level Of {number} ?
+            </p>
+            <div className="flex items-center justify-center space-x-2">
+              <button
+                onClick={showLastModal}
+                className="w-[36px] h-[19px] font-semibold text-xs rounded bg-[#CCEAFF] text-[#47B5FF]"
+              >
+                20%
+              </button>
+              <button
+                onClick={showLastModal}
+                className="w-[36px] h-[19px] font-semibold text-xs rounded bg-[#FFEDCC] text-[#FFAE1B]"
+              >
+                40%
+              </button>
+              <button
+                onClick={showLastModal}
+                className="w-[36px] h-[19px] font-semibold text-xs rounded bg-[#E2CCFF] text-[#9747FF]"
+              >
+                60%
+              </button>
+              <button
+                onClick={showLastModal}
+                className="w-[36px] h-[19px] font-semibold text-xs rounded bg-[#144A6B] text-[#FFFFFF]"
+              >
+                80%
+              </button>
+              <button
+                onClick={showLastModal}
+                className="w-[40px] h-[19px] font-semibold text-xs rounded bg-[#D4F7E9] text-[#24BF81]"
+              >
+                100%
+              </button>
+            </div>
+          </>
+        )}
+        {lastModal && (
+          <>
+            <img
+              data-aos="fade-left"
+              data-aos-duration="500"
+              className="mb-3"
+              src={group}
+              alt=""
+            />
+            <p
+              data-aos="fade-left"
+              data-aos-duration="500"
+              className="font-semibold text-[22px] text-[#06283D] mb-2"
+            >
+              Hurrah
+            </p>
+            <p
+              data-aos="fade-left"
+              data-aos-duration="500"
+              className="text-[#1B2328] text-sm px-14 text-center"
+            >
+              You have received 5 trust coin to unlock one profile.
+            </p>
+            <div
+              data-aos="fade-left"
+              data-aos-duration="500"
+              className="absolute bottom-6 bg-[#1363DF] w-[156px] h-[52px] rounded-lg flex items-center justify-center"
+            >
+              <Link
+                data-aos="fade-left"
+                data-aos-duration="500"
+                to={`/${number}`}
+                className="text-lg font-semibold text-white"
+              >
+                Unlock Now
+              </Link>
+            </div>
+          </>
+        )}
+      </div>
+
     </>
   );
 };
