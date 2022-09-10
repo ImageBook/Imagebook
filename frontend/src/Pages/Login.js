@@ -12,8 +12,11 @@ import ContinueByName from '../components/ContinueByName';
 import OtpInput from 'react18-input-otp';
 import login from '../images/num-pad/checkmark-circle-2.png';
 import { useNavigate } from 'react-router-dom';
+import UserContext from '../store/userContext';
+import { useContext } from 'react';
 
 const Login = () => {
+    const userCtx = useContext(UserContext);
     // login screen
     const [number, setNumber] = useState('');
     const [valid, setValid] = useState(false);
@@ -126,17 +129,17 @@ const Login = () => {
         const confirmationResult = window.confirmationResult;
         confirmationResult.confirm(otp).then((result) => {
             fetch(`http://localhost:5000/getUsers/${number}`)
-                .then(res => res?.json())
+                .then(res => res.json())
                 .then(data => {
                     // console.log('data', data);
-                    if (data) {
-                        navigate('/home');
-                    }
-                    else {
+                    if (data.length === 0) {
                         setHidden(true);
                     }
+                    else {
+                        userCtx.setLogin(data[0]);
+                        navigate('/home');
+                    }
                 })
-
             // setHidden(true);
             // const user = result.user;
         }).catch((error) => {

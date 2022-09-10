@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import home from "../images/Home/bxs_home.png";
 import film from "../images/Home/film-fill.png";
 import trophy from "../images/Home/fluent_trophy-24-filled.png";
@@ -6,12 +6,18 @@ import person from "../images/Home/carbon_user-filled.png";
 import plus from "../images/Home/plus.png";
 import { useNavigate } from "react-router-dom";
 import { borderRadius } from "@mui/system";
+import UserContext from "../store/userContext";
 
 const FooterHome = () => {
+  const userCtx = useContext(UserContext);
   const navigate = useNavigate();
   const openSearchHandler = () => {
     navigate("/giveResectSearch");
   };
+
+  const navigateProfileHandler = ()=>{
+    navigate(`/${userCtx.loggedInUser.number}`)
+  }
 
   return (
     <div className="w-full bg-[#F7F7F7] fixed bottom-0 z-50">
@@ -40,7 +46,7 @@ const FooterHome = () => {
           </div>
         </div>
         <img src={trophy} alt="" />
-        <img src={person} alt="" />
+        <img src={person} onClick={navigateProfileHandler} alt="" />
       </div>
     </div>
   );

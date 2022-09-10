@@ -9,10 +9,12 @@ router.route('/postUsers').post((req, res) => {
     accountCreationDate: Date.now()
   };
   const newUser = new User({
+    registered:true,
     name: user.name,
     number: user.number,
     accountCreationDate: user.accountCreationDate,
-    respects: [],
+    givenRespects: [],
+    recievedRespects: []
 
   });
   newUser.save();
@@ -24,7 +26,32 @@ router.route('/getUsers').get((req, res) => {
 })
 router.route('/getUsers/:number').get((req, res) => {
   const phone = req.params.number;
+<<<<<<< HEAD
   User.findOne({ number: phone }).then((foundData) => res.send(foundData)).catch((noData) => res.send({ user: "No User Found!" }))
+=======
+  User.find({ number: phone }).then((foundData) => res.send(foundData))
+
+>>>>>>> 9306e85106f16fe3055bfc796c9338126d7dbf27
 })
+
+router.route("/updateGivenRespects").post( (req, res) => {
+  
+   User.findOneAndUpdate(
+    { number: req.body.number },
+    {$push:{ givenRespects: req.body.respects }},
+  ).then(()=>User.findOne({ number: req.body.number }).then((foundData) =>
+      res.send(foundData)
+))
+});
+
+router.route("/updateRecievedRespects").post( (req, res) => {
+  
+  User.findOneAndUpdate(
+   { number: req.body.number },
+   {$push:{ recievedRespects: req.body.respects }},
+ ).then(()=>User.findOne({ number: req.body.number }).then((foundData) =>
+     res.send(foundData)
+))
+});
 
 module.exports = router;
