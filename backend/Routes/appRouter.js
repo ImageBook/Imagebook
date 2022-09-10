@@ -24,8 +24,7 @@ router.route('/getUsers').get((req, res) => {
 })
 router.route('/getUsers/:number').get((req, res) => {
   const phone = req.params.number;
-  User.findOne({ number: phone }).then((foundData) => res.send(foundData))
-
+  User.findOne({ number: phone }).then((foundData) => res.send(foundData)).catch((noData) => res.send({ user: "No User Found!" }))
 })
 
 module.exports = router;
