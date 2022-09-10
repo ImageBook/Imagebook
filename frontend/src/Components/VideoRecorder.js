@@ -119,6 +119,7 @@ const VideoRecorder = () => {
         let obj={
           number:userCtx.loggedInUser.number,
           respects:{
+            postedFor:location.state.id,
             url:link,
             postedBy: userCtx.loggedInUser.number,
             cameraUsed:cameraMode
@@ -127,6 +128,7 @@ const VideoRecorder = () => {
         let obj1={
           number:location.state.id,
           respects:{
+            postedFor:location.state.id,
             url:link,
             postedBy: userCtx.loggedInUser.number,
             cameraUsed:cameraMode
@@ -161,6 +163,8 @@ const VideoRecorder = () => {
   };
   const SetRecordingHandler = (prop) => {
     recordingHandler("def");
+    setRecordedChunks([]);
+    setPaused(false)
   };
 
   const playHandler = (control) => {
@@ -244,11 +248,11 @@ const VideoRecorder = () => {
                   <div className={styles.controlsWrapper}>
                     <div className={styles.controls}>
                       {!capturing ? (
-                        <button className={styles.buttonWhite}>
+                        <button className={styles.buttonsWhite}>
                           <AutoAwesomeIcon />
                         </button>
                       ) : (
-                        <button className={styles.buttonWhite}>
+                        <button className={styles.buttonsWhite}>
                           {!paused && <div onClick={handlePauseClick}><PauseCircleOutlineIcon /></div>}
                           {paused && <div onClick={handleResumeClick} ><RadioButtonCheckedOutlinedIcon style={{ color: "red" }} /></div>}
                         </button>
@@ -265,7 +269,6 @@ const VideoRecorder = () => {
                             colors={["#FC5337"]}
                             colorsTime={[60]}
                             strokeWidth={5}
-                            rotation={0}
                             size={70}
                             onComplete={handleStopCaptureClick}
                           ></CountdownCircleTimer>
@@ -286,7 +289,7 @@ const VideoRecorder = () => {
                         />
                       )}
                       <button
-                        className={styles.buttonWhite}
+                        className={styles.buttonsWhite}
                         onClick={cameraInvertHandler}
                       >
                         <FlipCameraAndroidIcon />

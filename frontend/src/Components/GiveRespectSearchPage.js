@@ -9,6 +9,7 @@ import ContactEach from "./ContactEach";
 import { useState } from "react";
 import ohNoImage from "../Assets/ohNoImage.png";
 import PhoneInput from "react-phone-number-input";
+import GiveRespectEachContact from "./GiveRespectEachContact";
 
 const GiveRespectSearchPage = () => {
   const arr = [
@@ -42,7 +43,7 @@ const GiveRespectSearchPage = () => {
     navigate("/notifications");
   };
   const openContactHandler = () => {
-    navigate("/contacts");
+    navigate("/contacts",{state:{id:'send'}});
   };
   const suggestNameHandler = ()=>{
     navigate('/suggestName',{state:{id:input}})
@@ -115,7 +116,7 @@ const GiveRespectSearchPage = () => {
                 {arr
                   .filter((obj) => obj.number.includes(input))
                   .map((each) => (
-                    <ContactEach item={each} />
+                    <GiveRespectEachContact item={each} />
                   ))}
               </div>
             </>

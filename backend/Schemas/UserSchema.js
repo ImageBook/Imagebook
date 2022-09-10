@@ -32,6 +32,7 @@ const user={
     givenRespects:[{
         respectLink:String,
         postedBy:String,
+        postedFor:String,
         cameraUsed:String,
         selectedType:String,
         url:String,
@@ -50,6 +51,7 @@ const user={
     recievedRespects: [{
         respectLink:String,
         postedBy:String,
+        postedFor:String,
         cameraUsed:String,
         selectedType:String,
         url:String,

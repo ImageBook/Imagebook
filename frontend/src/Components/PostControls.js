@@ -19,7 +19,7 @@ const PostControls = (props) => {
     <div className={styles.controlsWrapper}>
     <div className={styles.controls}>
       <button
-        className={styles.buttonWhite}
+        className={styles.buttonsWhite}
         onClick={(e) => props.SetRecordingHandler("def")}
       >
         <ReplayIcon />
@@ -44,21 +44,13 @@ const PostControls = (props) => {
       )}
 
       <button
-        className={styles.buttonWhite}
+        className={styles.buttonsWhite}
         onClick={(e) => props.submitHandler()}
       >
         <CheckIcon />
       </button>
     </div>
-    <div style={{backgroundColor:"white",height:"8px",width:"80%",margin:"auto",borderRadius:"10px"}}>
-        <div style={{
-            width:props.progress,
-            backgroundColor:"#47B5FF",
-            height:"8px",borderRadius:"10px"
-        }}>
-
-        </div>
-    </div>
+    
     </div>
   );
 };

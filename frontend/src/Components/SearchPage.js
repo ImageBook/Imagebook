@@ -8,6 +8,7 @@ import search from "../images/Notifications/search.png";
 import ContactEach from "./ContactEach";
 import ForNewUser from "./ForNewUser";
 import PhoneInput from "react-phone-number-input";
+import Search from "@mui/icons-material/Search";
 
 const SearchPage = () => {
   const arr = [
@@ -42,7 +43,7 @@ const SearchPage = () => {
     navigate("/notifications");
   };
   const openContactHandler = () => {
-    navigate("/contacts");
+    navigate("/contacts",{state:{id:'search'}});
   };
 
   const modalOpenHandler = (number) => {
@@ -74,13 +75,11 @@ const SearchPage = () => {
         </div>
       </div>
       <div className="">
-        <div className="w-11/12 mx-auto mt-12 flex items-center space-x-3">
-          <PhoneInput
-            className="border-[2px] border-[#EBF1F4] rounded-[10px] p-[10px] h-12 text-lg"
-            defaultCountry="IN"
-            placeholder="Enter phone number"
-            onChange={setInput}
-          />
+        <div className="w-11/12 mx-auto mt-12 flex justify-center items-center space-x-3">
+          <div className="border-[2px] border-[#EBF1F4] rounded-[10px] p-[10px] h-12 text-lg">
+            <Search style={{color:"#5E849C"}}/>
+            <input type="tel" style={{outline:"none"}} className="placeholder-[#5E849C]" placeholder="Type Here" onChange={(e)=>setInput(e.target.value)}/>
+          </div>
           <div
             className="w-[44px] h-12 shadow-lg rounded-xl flex items-center justify-center"
             onClick={openContactHandler}

@@ -5,6 +5,7 @@ import ShieldIcon from "@mui/icons-material/Shield";
 import axios from 'axios'
 import VideocamIcon from '@mui/icons-material/Videocam';
 import UserContext from "../store/userContext";
+import EachRespect from "../components/EachRespect";
 
 const Profile = () => {
   
@@ -38,7 +39,7 @@ const Profile = () => {
   
 
   const videoOpenHandler = () => {
-    navigate('/video')
+    navigate('/video',{state:{id:params.id}})
   }
 
   const backHandler = ()=>{
@@ -64,7 +65,7 @@ const Profile = () => {
           className="flex items-center gap-1 text-white px-[10px] py-[2px] rounded-xl"
         >
           <ShieldIcon style={{ fontSize: "17px" }} />
-          <p className="text-sm font-semibold">{obj.trustScore}</p>
+          <p className="text-sm font-semibold">{`${(obj.recievedRespects?.length/obj.givenRespects?.length)*100}%`}</p>
         </div>
       </div>
       <div
@@ -89,6 +90,10 @@ const Profile = () => {
             {obj?.recievedRespects?.length}
           </p>
         </div>
+      </div>
+      <div className="mt-[20px]">
+        {type==='given' && obj?.givenRespects?.map((each)=><EachRespect sender={each.postedBy} url={each.url} reciever={each.postedFor}/>)}
+        {type==='recieved' && obj?.recievedRespects?.map((each)=><EachRespect sender={each.postedBy} url={each.url} reciever={each.postedFor}/>)}
       </div>
       {!isMyProfile && <div style={{ backgroundColor: "#1363DF", borderRadius: "100px" }} className="fixed bottom-[50px] right-[35px] text-white p-5 rounded-4xl" onClick={videoOpenHandler}>
         <VideocamIcon style={{ fontSize: "30px" }} />

@@ -29,12 +29,12 @@ const RespectModal = (props) => {
           transitionDuration: modalAnim && "0.5s",
         }}
       >
-        <div className=" w-[90%] mx-auto mt-[10px]">
+        <div className=" w-[90%] mx-auto mt-[20px]">
           <div className="flex justify-between">
             <div className="flex gap-3">
               <img
                 style={{ width: "50px", height: "50px", borderRadius: "100px" }}
-                src="https://i.stack.imgur.com/l60Hf.png"
+                src={props.img?props.img:"https://i.stack.imgur.com/l60Hf.png"}
               />
               <div className="flex flex-col gap-1">
                 <p>{props.name}</p>
@@ -46,7 +46,7 @@ const RespectModal = (props) => {
             </div>
           </div>
           <p className="font-semibold mt-[20px] ">Purpose</p>
-          <div className="flex justify-around mt-[20px]">
+          <div className="flex justify-around mt-[15px]">
             <div
               onClick={(e) => setModalValue("Respect")}
               className="flex flex-col justify-center items-center"

@@ -29,6 +29,13 @@ path{
     width:50px;
     color: black;
 }
+.buttonsWhite{
+    border-radius: 200px;
+    background-color:white ;
+    width:50px;
+    color: black;
+    padding: 12px;
+}
 .controlsWrapper{
 
     display: flex;

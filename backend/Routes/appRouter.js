@@ -26,12 +26,9 @@ router.route('/getUsers').get((req, res) => {
 })
 router.route('/getUsers/:number').get((req, res) => {
   const phone = req.params.number;
-<<<<<<< HEAD
-  User.findOne({ number: phone }).then((foundData) => res.send(foundData)).catch((noData) => res.send({ user: "No User Found!" }))
-=======
+
   User.find({ number: phone }).then((foundData) => res.send(foundData))
 
->>>>>>> 9306e85106f16fe3055bfc796c9338126d7dbf27
 })
 
 router.route("/updateGivenRespects").post( (req, res) => {

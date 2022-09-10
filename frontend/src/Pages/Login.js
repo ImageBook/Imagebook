@@ -228,7 +228,7 @@ const Login = () => {
                         <div className='flex items-center justify-center'>
                             <div className='font-normal text-sm text-center text-[#1B2328] absolute bottom-4'>
                                 <p>By continuing you will agree</p>
-                                <p>to our <span className='text-[#1363DF] font-semibold underline'>Term & Condition</span></p>
+                                <p>to our <span className='text-[#1363DF] font-semibold underline'>Terms & Conditions</span></p>
                             </div>
                         </div>
                     </div>
