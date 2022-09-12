@@ -4,7 +4,9 @@ import icon from "../images/Record1.png";
 import icon1 from "../images/Record2.png";
 import { Link } from "react-router-dom";
 import group from "../images/Group.png";
-import styles from './ForNewUser.module.css'
+import styles from './ForNewUser.module.css';
+import Box from '@mui/material/Box';
+import Slider from '@mui/material/Slider';
 
 const ForNewUser = ({ setModal, number }) => {
   const [no, setNo] = useState(false);
@@ -13,6 +15,10 @@ const ForNewUser = ({ setModal, number }) => {
   const [commitmentLevel, setCommitmentLevel] = useState(false);
   const [responsibilityLevel, setResponsibilityLevel] = useState(false);
   const [lastModal, setLastModal] = useState(false);
+  const [bondingValue, setBondingValue] = useState(10);
+  const handleChange = (event, newValue) => {
+    setBondingValue(newValue);
+  };
   const bondingModal = () => {
     setYes(false);
     setBondingLevel(true);
@@ -218,11 +224,33 @@ const ForNewUser = ({ setModal, number }) => {
             <p
               data-aos="fade-left"
               data-aos-duration="500"
-              className="font-semibold text-lg px-2 mb-5 text-center"
+              className="font-semibold text-lg px-2 mb-3 text-center"
             >
               What Is Bonding level Of {number} ?
             </p>
+            <div className="flex items-center justify-center space-x-4">
+              <Box width={220}>
+                <Slider defaultValue={10} sx={{
+                  color: '##DFF6FF',
+                  height: '8px'
+                }} aria-label="Default" valueLabelDisplay="auto" value={bondingValue} onChange={handleChange} />
+              </Box>
+              <p className="-mt-2 text-sm ">{bondingValue} %</p>
+            </div>
             <div
+              data-aos="fade-left"
+              data-aos-duration="500"
+              className="absolute bottom-6 bg-[#1363DF] w-[156px] h-[52px] rounded-lg flex items-center justify-center"
+            >
+              <button
+                data-aos="fade-left"
+                data-aos-duration="500" onClick={showCommitmentModal}
+                className="text-lg font-semibold text-white"
+              >
+                Proceed
+              </button>
+            </div>
+            {/* <div
               data-aos="fade-left"
               data-aos-duration="500"
               className="flex items-center justify-center space-x-2"
@@ -257,7 +285,7 @@ const ForNewUser = ({ setModal, number }) => {
               >
                 100%
               </button>
-            </div>
+            </div> */}
           </>
         )}
         {commitmentLevel && (

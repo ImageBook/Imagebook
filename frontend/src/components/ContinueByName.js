@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import UserContext from "../store/userContext";
 import { useContext } from "react";
+import img from '../images/continuebyname.png';
 
 const ContinueByName = ({ number }) => {
     const userCtx = useContext(UserContext);
@@ -43,7 +44,8 @@ const ContinueByName = ({ number }) => {
     };
 
     return (
-        <div className="flex flex-col justify-center h-full">
+        <div className="flex flex-col justify-center h-screen -mt-10">
+            <img className="w-48 mx-auto mb-6" src={img} alt="" />
             <p className="font-semibold text-[#00386D] text-lg ml-8 mb-2">
                 Enter Your Name
             </p>

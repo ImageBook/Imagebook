@@ -13,6 +13,8 @@ import SuggestName from './components/SuggestName';
 import ForNewUser from './components/ForNewUser';
 import GiveRespectContacts from './components/GiveRespectContacts';
 import EachRespect from './components/EachRespect';
+import ContinueByName from './components/ContinueByName';
+import EditProfile from './Pages/EditProfile';
 
 function App() {
   return (
@@ -28,7 +30,8 @@ function App() {
       <Route path='/giveResectSearch' element={<GiveRespectSearchPage/>}></Route>
       <Route path='/suggestName' element={<SuggestName/>}></Route>
       <Route path='/giveRespectContacts' element={<GiveRespectContacts/>}></Route>
-      <Route path='/eachRespect' element={<EachRespect></EachRespect>}></Route>
+      <Route path='/edit-profile' element={<EditProfile/>}></Route>
+      {/* <Route path='/eachRespect' element={<ContinueByName></ContinueByName>}></Route> */}
     </Routes>
   );
 }

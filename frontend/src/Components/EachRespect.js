@@ -4,6 +4,7 @@ import clock from '../images/clock.png';
 import smallImg from '../images/Small Card Images.png';
 import dots from '../images/more-horizontal.png';
 import playVideo from '../images/playVideo.png';
+import reacts from '../images/Thumbnail reaction indicator.png';
 import axios from 'axios';
 
 const EachRespect = (props) => {
@@ -32,10 +33,10 @@ const EachRespect = (props) => {
 
     return (
 
-        <div className='w-11/12 mx-auto rounded-2xl '>
+        <div className='w-11/12 mx-auto rounded-2xl mb-6'>
             <div className='relative'>
                 <video style={{ height: "200px", minHeight: "200px" }} className='rounded-t-2xl w-full h-[100px]' src={props.url} alt="" />
-                <img className='absolute bottom-4 left-4' src={playVideo} alt="" />
+                <img className='absolute bottom-4 left-4' src={reacts} alt="" />
             </div>
             <div className='flex items-center justify-between bg-[#F2F6F8] rounded-b-2xl py-3 '>
                 <div className='pl-[10px] flex gap-2 items-center'>

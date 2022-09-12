@@ -1,5 +1,5 @@
 import { useState } from "react";
-import onBoardingImg from "../Assets/pablita-605.png";
+import onBoardingImg from "../images/welcome.png";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { useNavigate } from "react-router-dom";
@@ -23,7 +23,7 @@ const OnBoarding = () => {
       </p>
       <div className="flex flex-col items-center">
         <img style={{ marginTop: "20vh" }} src={onBoardingImg} />
-        <p className="font-semibold text-2xl">Welcome to ImageBook</p>
+        <p className="font-semibold text-2xl mt-5">Welcome to ImageBook</p>
         {onboarding === "1" && (
           <p className="mx-9 text-center mt-3 text-sm text-black">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Feugiat
