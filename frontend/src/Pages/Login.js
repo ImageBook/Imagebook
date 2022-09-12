@@ -128,7 +128,7 @@ const Login = () => {
         e.preventDefault();
         const confirmationResult = window.confirmationResult;
         confirmationResult.confirm(otp).then((result) => {
-            fetch(`https://imagebook-digilabs.herokuapp.com/getUsers/${number}`)
+            fetch(`http://localhost:5000/getUsers/${number}`)
                 .then(res => res.json())
                 .then(data => {
                     // console.log('data', data);
