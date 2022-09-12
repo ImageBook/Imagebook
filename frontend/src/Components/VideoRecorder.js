@@ -114,7 +114,7 @@ const VideoRecorder = () => {
       console.log('url', response.data.secure_url);
       console.log(response);
       if (response.status === 200) {
-        
+
         let link = response.data.secure_url;
         let obj={
           number:userCtx.loggedInUser.number,
@@ -123,7 +123,7 @@ const VideoRecorder = () => {
             postedFor:location.state.id,
             url:link,
             postedBy: userCtx.loggedInUser.number,
-            cameraUsed:cameraMode
+            cameraUsed: cameraMode
           }
         }
         let obj1={
@@ -134,7 +134,7 @@ const VideoRecorder = () => {
             postedFor:location.state.id,
             url:link,
             postedBy: userCtx.loggedInUser.number,
-            cameraUsed:cameraMode
+            cameraUsed: cameraMode
           }
         }
         axios.post(`http://localhost:5000/updateGivenRespects`,obj)
@@ -181,7 +181,7 @@ const VideoRecorder = () => {
     console.log(progress)
   };
 
-  const submitHandler =  () => {
+  const submitHandler = () => {
     setSubmitted(true);
     uploadFile(newBlob)
   };

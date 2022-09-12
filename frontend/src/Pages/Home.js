@@ -7,6 +7,7 @@ import InvitePeople from '../components/InvitePeople';
 import FooterHome from '../components/FooterHome';
 import HomeSidebar from '../components/HomeSidebar';
 import xIcon from '../images/Home/🎨 Icon Сolor.png';
+import searchIcon from '../images/Home/searchIcon.png';
 import user from '../images/Home/Small Card Images.png';
 import checkIcon from '../images/Home/filled color.png';
 import wallet from '../images/Home/wallet-03.png';
@@ -36,11 +37,17 @@ const Home = () => {
             console.log('error occurred');
         });
     }
+
+    const goToEditProfile = () => {
+        navigate('/edit-profile');
+    }
+
     return (
         <div className='font-poppins relative flex flex-col justify-between min-h-screen'>
             <Navbar sidebar={sidebar} setSidebar={setSidebar}></Navbar>
-            <div className='w-11/12 mx-auto mb-6'>
-                <input onFocus={goToSearch} className='w-full h-12 rounded-[10px] border-2 border-[#EBF1F4] pl-4 focus:outline-none text-lg text-[#5E849C]' type="text" name="" id="" placeholder='Find Respected People' />
+            <div className='w-11/12 mx-auto mb-6 relative'>
+                <input onFocus={goToSearch} className='w-full h-12 rounded-[10px] border-2 border-[#EBF1F4] pl-10 focus:outline-none text-lg text-[#5E849C]' type="text" name="" id="" placeholder='Find Respected People' />
+                <img className='absolute top-[14px] left-3' src={searchIcon} alt="" />
             </div>
             <div className='w-11/12 mx-auto flex items-center justify-between space-x-3 mb-6'>
                 <button className='w-[180px] h-[52px] rounded-lg font-semibold text-lg text-white bg-[#1363DF]'>Join Contest</button>
@@ -71,13 +78,13 @@ const Home = () => {
                                 <img onClick={() => setSidebar(false)} src={xIcon} alt="" />
                             </div>
                             <div className='flex items-center space-x-3 mt-3 mb-5'>
-                                <img style={{width:"50px",height:"50px",borderRadius:"100px"}} src={userCtx.loggedInUser.image} alt="" />
+                                <img style={{ width: "50px", height: "50px", borderRadius: "100px" }} src={userCtx.loggedInUser.image} alt="" />
                                 <div className=''>
                                     <div className='flex items-center space-x-2'>
                                         <p className='text-[#1B2328]'>{userCtx.loggedInUser.name}</p>
                                         {userCtx.loggedInUser.verified && <img src={checkIcon} alt="" />}
                                     </div>
-                                    <button className='text-[#5E849C] text-xs font-semibold'>Edit Profile</button>
+                                    <button onClick={goToEditProfile} className='text-[#5E849C] text-xs font-semibold'>Edit Profile</button>
                                 </div>
                             </div>
                         </div>

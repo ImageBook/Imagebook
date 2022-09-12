@@ -128,7 +128,7 @@ const Login = () => {
         e.preventDefault();
         const confirmationResult = window.confirmationResult;
         confirmationResult.confirm(otp).then((result) => {
-            fetch(`http://localhost:5000/getUsers/${number}`)
+            fetch(`https://imagebook-digilabs.herokuapp.com/getUsers/${number}`)
                 .then(res => res.json())
                 .then(data => {
                     // console.log('data', data);
@@ -172,7 +172,7 @@ const Login = () => {
                                 value={number}
                                 onChange={setNumber} />
 
-                            <div className='w-full mx-auto font-roboto space-y-2'>
+                            <div className='w-full mx-auto font-roboto space-y-2 absolute bottom-40'>
                                 <div className='mx-14 flex justify-between items-center pt-11'>
                                     <div onClick={appendOne} className='w-[50px] h-[50px] rounded-full shadow items-center justify-center'>
                                         <p className='font-semibold text-[30px] text-center mt-1'>1</p>
@@ -257,7 +257,7 @@ const Login = () => {
                                         </div>
                                     </form>
                                     <p className='ml-6 text-[13px]'>Entered Wrong Number? <span onClick={() => setValid(false)} className='text-[#0093ED] font-semibold hover:cursor-pointer'>Edit Number</span></p>
-                                    <div className='w-full mx-auto font-roboto space-y-2'>
+                                    <div className='w-full mx-auto font-roboto space-y-2 absolute bottom-24'>
                                         <div className='mx-14 flex justify-between items-center pt-10'>
                                             <div onClick={OtpAppendOne} className='w-[50px] h-[50px] rounded-full shadow items-center justify-center'>
                                                 <p className='font-semibold text-[30px] text-center mt-1'>1</p>

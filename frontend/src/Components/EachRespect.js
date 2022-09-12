@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
-import girl from "../images/girl.png";
-import clock from "../images/clock.png";
-import smallImg from "../images/Small Card Images.png";
-import dots from "../images/more-horizontal.png";
-import playVideo from "../images/playVideo.png";
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import girl from '../images/girl.png';
+import clock from '../images/clock.png';
+import smallImg from '../images/Small Card Images.png';
+import dots from '../images/more-horizontal.png';
+import playVideo from '../images/playVideo.png';
+import reacts from '../images/Thumbnail reaction indicator.png';
+import axios from 'axios';
+
 
 const EachRespect = (props) => {
   const [reciever, setReciever] = useState({});
