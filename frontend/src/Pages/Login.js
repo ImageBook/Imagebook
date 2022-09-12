@@ -132,7 +132,7 @@ const Login = () => {
                 .then(res => res.json())
                 .then(data => {
                     // console.log('data', data);
-                    if (data.length === 0) {
+                    if (data.length === 0 || data[0]?.registered===false) {
                         setHidden(true);
                     }
                     else {

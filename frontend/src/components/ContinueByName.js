@@ -15,22 +15,17 @@ const ContinueByName = ({ number }) => {
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
-  const onSubmit = async (data) => {
+  const onSubmit =  (data) => {
     const userName = data.firstName.trim() + " " + data.lastName.trim();
-    console.log(data);
+
     const user = {
       number: number,
       name: userName,
     };
-    await fetch("http://localhost:5000/postUsers", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(user),
-    });
+     axios.post('http://localhost:5000/postUsers',user);
 
-    await fetch(`http://localhost:5000/getUsers/${user.number}`)
+
+      fetch(`http://localhost:5000/getUsers/${user.number}`)
       .then((res) => res.json())
       .then((data) => {
         // console.log('data', data);
@@ -38,6 +33,9 @@ const ContinueByName = ({ number }) => {
         userCtx.setLogin(data[0]);
         navigate("/home");
       });
+    
+
+     
 
     
   };

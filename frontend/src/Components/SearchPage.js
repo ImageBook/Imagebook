@@ -147,7 +147,7 @@ const SearchPage = () => {
                     <p className="text-lg">{input?.toString()}</p>
                     <p
                       style={{ backgroundColor: "#E8E8E8" }}
-                      className="text-sm font-bold p-[4px] rounded-md"
+                      className="text-sm font-bold p-[4px] rounded-md w-fit"
                     >
                       Unregistered
                     </p>

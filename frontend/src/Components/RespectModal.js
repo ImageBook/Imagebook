@@ -15,7 +15,7 @@ const RespectModal = (props) => {
   }, []);
 
   const videoNavigateHandler = ()=>{
-    navigate('/video',{state:{id:props.number}});
+    navigate('/video',{state:{id:props.number,name:props.name}});
   }
 
   return (

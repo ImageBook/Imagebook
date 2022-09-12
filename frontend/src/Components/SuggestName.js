@@ -10,9 +10,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 const SuggestName = () => {
   const [name, setName] = useState("");
-  const navigate = useNavigate();
   const [modal, setModal] = useState(false);
+  const [yesNo,setYesNo] = useState('');
+  const navigate = useNavigate(); 
   const location = useLocation();
+
 
   const backHandler = () => {
     navigate(-1);
@@ -61,25 +63,32 @@ const SuggestName = () => {
                     backgroundColor: "#D4F7E9",
                     padding: "5px",
                     borderRadius: "5px",
+                    opacity:yesNo==='Yes'?"1":"0.5",
                   }}
+                  onClick={(e)=>setYesNo('Yes')}
                 >
                   <img src={yes} />
-                  <p>Yes</p>
+                  <p className="text-[#24BF81]">Yes</p>
                 </div>
                 <div
+                  
                   className="flex items-center gap-1"
                   style={{
                     backgroundColor: "#FED4CD",
                     padding: "5px",
                     borderRadius: "5px",
+                    opacity:yesNo==='No'?"1":"0.5",
                   }}
+                  
+                  onClick={(e)=>setYesNo('No')}
                 >
                   <img src={no} />
-                  <p>No</p>
+                  <p className="text-[#FC5337]">No</p>
                 </div>
               </div>
             </div>
             <button
+            disabled={(yesNo!="Yes"&&yesNo!="No")}
               onClick={modalOpenHandler}
               style={{
                 backgroundColor: "#1363DF",
@@ -88,10 +97,11 @@ const SuggestName = () => {
                 height: "52px",
                 borderRadius: "10px",
                 margin: "24px",
+                opacity: yesNo!==''?"1":"0.5"
               }}
               className="absolute bottom-0"
             >
-              Suggest Name
+              Select Purpose
             </button>
           </div>
           {modal && (

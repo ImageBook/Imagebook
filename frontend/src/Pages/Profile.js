@@ -6,6 +6,8 @@ import axios from 'axios'
 import VideocamIcon from '@mui/icons-material/Videocam';
 import UserContext from "../store/userContext";
 import EachRespect from "../components/EachRespect";
+import editIcon from '../Assets/edit.png'
+import noDataFound from '../Assets/noDataFound.png'
 
 const Profile = () => {
   
@@ -16,6 +18,7 @@ const Profile = () => {
   const navigate = useNavigate()
   const [isMyProfile,setIsMyProfile] = useState(false);
   const [notExist,setNotExist] =useState(false);
+  const [isRegistered,setIsRegistered] = useState(false);
 
 
   useEffect(() => {
@@ -23,6 +26,10 @@ const Profile = () => {
     
     if(params.id === userCtx.loggedInUser.number){
       setIsMyProfile(true);
+    }
+
+    if(obj?.registered === true){
+      setIsRegistered(true);
     }
 
   }, []);
@@ -54,11 +61,21 @@ const Profile = () => {
           style={{ width: "75px", height: "75px", borderRadius: "50%" }}
           src={obj?.image}
         />
-        <p className="text-xl font-semibold">{obj?.name}</p>
-        <p style={{ color: "#5E849C" }} className="text-sm font-semibold">
-          {obj?.number}
+        <div className="flex gap-2 items-center">
+          <p className="text-xl font-semibold">{obj?.name}</p>
+          {!isRegistered && <img src={editIcon}/>}
+        </div>
+        <div className="flex gap-0.5"><p style={{ color: "#5E849C" }} className="text-sm font-semibold">
+          {obj?.number} 
         </p>
-        <div
+        {!isRegistered && <div className="flex gap-0.5"><p style={{ color: "#5E849C" }} className="text-sm font-semibold">
+          •
+        </p>
+        <p style={{ color: "#5E849C" }} className="text-sm font-semibold">
+          Unregistered
+        </p></div>}
+        </div>
+        {isRegistered && <div
           style={{
             background: "linear-gradient(270deg, #6A11CB 0%, #2575FC 100%)",
           }}
@@ -66,7 +83,7 @@ const Profile = () => {
         >
           <ShieldIcon style={{ fontSize: "17px" }} />
           <p className="text-sm font-semibold">{`${(obj.recievedRespects?.length/obj.givenRespects?.length)*100}%`}</p>
-        </div>
+        </div>}
       </div>
       <div
         style={{ backgroundColor: "#EBF1F4" }}
@@ -92,8 +109,16 @@ const Profile = () => {
         </div>
       </div>
       <div className="mt-[20px]">
-        {type==='given' && obj?.givenRespects?.map((each)=><EachRespect sender={each.postedBy} url={each.url} reciever={each.postedFor}/>)}
-        {type==='recieved' && obj?.recievedRespects?.map((each)=><EachRespect sender={each.postedBy} url={each.url} reciever={each.postedFor}/>)}
+      {(type==='given' && obj?.givenRespects?.length===0) && <div className="flex flex-col items-center gap-3 mt-[40px]">
+        <img src={noDataFound} />
+        <p style={{color:"#5E849C"}}>No respects given!</p>
+        </div>}
+        {(type==='recieved' && obj?.recievedRespects?.length===0) && <div className="flex flex-col items-center gap-3 mt-[40px]">
+        <img src={noDataFound} />
+        <p style={{color:"#5E849C"}}>No respects recieved!</p>
+        </div>}
+        {type==='given' && obj?.givenRespects?.map((each)=><EachRespect sender={each.postedBy} cameraUsed={each.cameraUsed} url={each.url} reciever={each.postedFor}/>)}
+        {type==='recieved' && obj?.recievedRespects?.map((each)=><EachRespect sender={each.postedBy} cameraUsed={each.cameraUsed} url={each.url} reciever={each.postedFor}/>)}
       </div>
       {!isMyProfile && <div style={{ backgroundColor: "#1363DF", borderRadius: "100px" }} className="fixed bottom-[50px] right-[35px] text-white p-5 rounded-4xl" onClick={videoOpenHandler}>
         <VideocamIcon style={{ fontSize: "30px" }} />

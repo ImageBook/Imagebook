@@ -119,6 +119,7 @@ const VideoRecorder = () => {
         let obj={
           number:userCtx.loggedInUser.number,
           respects:{
+            time:Date.now(),
             postedFor:location.state.id,
             url:link,
             postedBy: userCtx.loggedInUser.number,
@@ -126,24 +127,20 @@ const VideoRecorder = () => {
           }
         }
         let obj1={
+          name:location.state.name,
           number:location.state.id,
           respects:{
+            time:Date.now(),
             postedFor:location.state.id,
             url:link,
             postedBy: userCtx.loggedInUser.number,
             cameraUsed:cameraMode
           }
         }
-        axios.post(`http://localhost:5000/updateGivenRespects`,obj).then(()=>{
-          axios.post(`http://localhost:5000/updateRecievedRespects`,obj1).then(()=>{
-            console.log("done");
-          })
-        })
+        axios.post(`http://localhost:5000/updateGivenRespects`,obj)
+        axios.post(`http://localhost:5000/updateRecievedRespects`,obj1)
+        console.log("done");
 
-      
-        
-        
-        
       }
     })
   }
