@@ -32,12 +32,12 @@ const Profile = () => {
   }, []);
 
   const getUser = async () => {
-    const response = await axios.get(`http://localhost:5000/getUsers/${params.id}`)
+    const response = await axios.get(`https://imagebook-digilabs.herokuapp.com/getUsers/${params.id}`)
     const data = response?.data;
     if (data.length === 0) {
       setNotExist(true);
     }
-    if(data[0]?.registered==true){
+    if (data[0]?.registered == true) {
       setIsRegistered(true);
     }
     setObj(data[0]);
