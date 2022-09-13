@@ -28,9 +28,6 @@ const Profile = () => {
       setIsMyProfile(true);
     }
 
-    if(obj?.registered === true){
-      setIsRegistered(true);
-    }
 
   }, []);
 
@@ -39,6 +36,9 @@ const Profile = () => {
     const data = response?.data;
     if(data.length===0){
       setNotExist(true);
+    }
+    if(data[0]?.registered==true){
+      setIsRegistered(true);
     }
     setObj(data[0]);
   }

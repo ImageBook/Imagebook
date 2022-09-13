@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import UserContext from "./userContext";
 
 const defaultUserCtx = {
@@ -44,10 +44,18 @@ const userReducer = (state,action)=>{
 }
 
 const UserProvider = (props)=>{
-
+    useEffect( ()=>{
+        getLoggedInUser();
+    },[])
     const [UserState,dispatchUserState] = useReducer(userReducer,defaultUserCtx);
 
-    
+    const getLoggedInUser = async()=>{
+        if(localStorage.getItem('loggedInUser')){
+            const res = await axios.get(`http://localhost:5000/getUsers/${localStorage.getItem('loggedInUser')}`)
+            const data = res?.data;
+            setLogin(data[0])
+        }
+    }
     const setLogin = (user)=>{
         dispatchUserState({type: "SETLOGIN",user:user});
     }  

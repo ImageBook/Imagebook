@@ -29,8 +29,8 @@ const SuggestName = () => {
   return (
     <>
       <Navigator heading="Suggest Name" backHandler={backHandler} />
-      <div className="flex items-center gap-2 box-border border-2 rounded-md w-5/6 m-auto mt-[30px]">
-        <PersonAddIcon style={{ color: "#5E849C", fontSize: "20px" }} />
+      <div className="flex items-center gap-[12px] box-border border-2 rounded-md w-5/6 m-auto mt-[30px] pl-[10px]">
+        <PersonAddIcon style={{ color: "#5E849C", fontSize: "24px" }} />
         <input
           className="placeholder-gray-500"
           style={{ outline: "none", height: "48px" }}
@@ -40,18 +40,20 @@ const SuggestName = () => {
         />
       </div>
       {name.length === 0 && (
-        <div className="flex flex-col gap-8 text-center items-center mt-[100px]">
+        <div className="flex flex-col gap-8 text-center justify-center items-center h-[70vh]">
+          <div className="flex flex-col items-center">
           <img src={ContactIcon} />
           <p style={{ width: "85%", margin: "auto" }}>
             Please suggest correct first name only else your respect wouldn't
             get Counted
           </p>
+          </div>
         </div>
       )}
       {name.length !== 0 && (
         <>
-          <div className="flex flex-col items-center justify-center">
-            <img src={DoYouKnowImage} className="mt-[50px]" />
+          <div className="flex flex-col items-center justify-center h-[60vh]">
+            <img src={DoYouKnowImage} className="" />
             <div className="flex flex-col gap-[30px]">
               <p className="font-semibold text-lg text-center">
                 Does that person know you?

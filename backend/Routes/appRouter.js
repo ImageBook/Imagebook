@@ -83,4 +83,19 @@ router.route("/updateRecievedRespects").post( (req, res) => {
   
 });
 
+router.route('/createNonExistingUser').post(async (req,res)=>{
+
+  const user = new User({
+    registered:false,
+    name:req.body.name,
+    number: req.body.number,
+    givenRespects:[],
+    recievedRespects:[]
+  })
+
+  await user.save();
+
+})
+
+
 module.exports = router;

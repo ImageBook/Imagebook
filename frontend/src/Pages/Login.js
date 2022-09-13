@@ -137,6 +137,7 @@ const Login = () => {
                     }
                     else {
                         userCtx.setLogin(data[0]);
+                        localStorage.setItem('loggedInUser',number);
                         navigate('/home');
                     }
                 })

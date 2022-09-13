@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import xIcon from "../images/xIcon.png";
 import icon from "../images/Record1.png";
 import icon1 from "../images/Record2.png";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import group from "../images/Group.png";
 import styles from './ForNewUser.module.css';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
+import { Button } from "@mui/material";
 
 const ForNewUser = ({ setModal, number }) => {
+  const navigate = useNavigate();
   const [no, setNo] = useState(false);
   const [yes, setYes] = useState(false);
   const [bondingLevel, setBondingLevel] = useState(false);
@@ -62,6 +64,10 @@ const ForNewUser = ({ setModal, number }) => {
     setResponsibilityLevel(false);
     setLastModal(true);
   };
+
+  const onUnlockNow = ()=>{
+    navigate('/searchSuggestName',{state:{id:number}})
+  }
 
   return (
     <>
@@ -418,14 +424,11 @@ const ForNewUser = ({ setModal, number }) => {
               data-aos-duration="500"
               className="absolute bottom-6 bg-[#1363DF] w-[156px] h-[52px] rounded-lg flex items-center justify-center"
             >
-              <Link
-                data-aos="fade-left"
-                data-aos-duration="500"
-                to={`/${number}`}
-                className="text-lg font-semibold text-white"
+              <button className="text-lg font-semibold text-white"
+              onClick={onUnlockNow}
               >
                 Unlock Now
-              </Link>
+              </button>
             </div>
           </>
         )}

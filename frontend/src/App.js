@@ -15,6 +15,7 @@ import GiveRespectContacts from './components/GiveRespectContacts';
 import EachRespect from './components/EachRespect';
 import ContinueByName from './components/ContinueByName';
 import EditProfile from './Pages/EditProfile';
+import SearchSuggestName from './components/SearchSuggestName';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
       <Route path='/search' element={<SearchPage/>}></Route>
       <Route path='/giveResectSearch' element={<GiveRespectSearchPage/>}></Route>
       <Route path='/suggestName' element={<SuggestName/>}></Route>
+      <Route path='/searchSuggestName' element={<SearchSuggestName/>}></Route>
       <Route path='/giveRespectContacts' element={<GiveRespectContacts/>}></Route>
       <Route path='/edit-profile' element={<EditProfile/>}></Route>
       {/* <Route path='/eachRespect' element={<ContinueByName></ContinueByName>}></Route> */}
