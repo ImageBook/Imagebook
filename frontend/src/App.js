@@ -34,7 +34,7 @@ function App() {
       <Route path='/giveRespectContacts' element={<GiveRespectContacts />}></Route>
       <Route path='/edit-profile' element={<EditProfile />}></Route>
       <Route path='/watch-video' element={<DisplayVideo></DisplayVideo>}></Route>
-
+      <Route path='/searchSuggestName' element={<SearchSuggestName></SearchSuggestName>}></Route>
     </Routes>
   );
 }
