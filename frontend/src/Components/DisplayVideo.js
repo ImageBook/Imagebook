@@ -27,9 +27,9 @@ const DisplayVideo = () => {
                     </div>
                 </div>
             </div>
-            <div style={{ height: 'calc(100vh - 200px)' }} className='relative object-cover w-full'>
-                <video className='object-cover w-full' controls src={state.video}></video>
-                <div className='absolute right-6 bottom-8 space-y-3'>
+            <div  className='relative object-cover w-full'>
+                <video style={{ minHeight: 'calc(100vh - 110px)' }} className='object-cover w-full' autoPlay playsInline src={state.video}></video>
+                <div className='absolute right-4 bottom-16 space-y-3'>
                     <img className='' src={emoji1} alt="" />
                     <img className='' src={emoji2} alt="" />
                     <img className='' src={emoji3} alt="" />
