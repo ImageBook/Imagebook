@@ -14,9 +14,9 @@ const SearchSuggestName = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const unlockProfileHandler = () => {
+  const unlockProfileHandler = async () => {
     let obj = { name: name, number: location.state.id }
-    axios.post(`https://imagebook-digilabs.herokuapp.com/createNonExistingUser`, obj)
+    await axios.post(`https://imagebook-digilabs.herokuapp.com/createNonExistingUser`, obj)
     navigate(`/${location.state.id}`)
 
   }
