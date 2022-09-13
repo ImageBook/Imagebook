@@ -16,8 +16,16 @@ const ForNewUser = ({ setModal, number }) => {
   const [responsibilityLevel, setResponsibilityLevel] = useState(false);
   const [lastModal, setLastModal] = useState(false);
   const [bondingValue, setBondingValue] = useState(10);
+  const [commitmentValue, setCommitmentValue] = useState(10);
+  const [responsibilityValue, setResponsibilityValue] = useState(10);
   const handleChange = (event, newValue) => {
     setBondingValue(newValue);
+  };
+  const handleCommitmentChange = (event, newValue) => {
+    setCommitmentValue(newValue);
+  };
+  const handleResChange = (event, newValue) => {
+    setResponsibilityValue(newValue);
   };
   const bondingModal = () => {
     setYes(false);
@@ -250,42 +258,6 @@ const ForNewUser = ({ setModal, number }) => {
                 Proceed
               </button>
             </div>
-            {/* <div
-              data-aos="fade-left"
-              data-aos-duration="500"
-              className="flex items-center justify-center space-x-2"
-            >
-              <button
-                onClick={showCommitmentModal}
-                className="w-[36px] h-[19px] font-semibold text-xs rounded bg-[#CCEAFF] text-[#47B5FF]"
-              >
-                20%
-              </button>
-              <button
-                onClick={showCommitmentModal}
-                className="w-[36px] h-[19px] font-semibold text-xs rounded bg-[#FFEDCC] text-[#FFAE1B]"
-              >
-                40%
-              </button>
-              <button
-                onClick={showCommitmentModal}
-                className="w-[36px] h-[19px] font-semibold text-xs rounded bg-[#E2CCFF] text-[#9747FF]"
-              >
-                60%
-              </button>
-              <button
-                onClick={showCommitmentModal}
-                className="w-[36px] h-[19px] font-semibold text-xs rounded bg-[#144A6B] text-[#FFFFFF]"
-              >
-                80%
-              </button>
-              <button
-                onClick={showCommitmentModal}
-                className="w-[40px] h-[19px] font-semibold text-xs rounded bg-[#D4F7E9] text-[#24BF81]"
-              >
-                100%
-              </button>
-            </div> */}
           </>
         )}
         {commitmentLevel && (
@@ -305,36 +277,26 @@ const ForNewUser = ({ setModal, number }) => {
             <p className="font-semibold text-lg px-2 mb-5 text-center">
               What Is Commitment level Of {number} ?
             </p>
-            <div className="flex items-center justify-center space-x-2">
+            <div className="flex items-center justify-center space-x-4">
+              <Box width={220}>
+                <Slider defaultValue={10} sx={{
+                  color: '##DFF6FF',
+                  height: '8px'
+                }} aria-label="Default" valueLabelDisplay="auto" value={commitmentValue} onChange={handleCommitmentChange} />
+              </Box>
+              <p className="-mt-2 text-sm ">{commitmentValue} %</p>
+            </div>
+            <div
+              data-aos="fade-left"
+              data-aos-duration="500"
+              className="absolute bottom-6 bg-[#1363DF] w-[156px] h-[52px] rounded-lg flex items-center justify-center"
+            >
               <button
-                onClick={showResponsibilityModal}
-                className="w-[36px] h-[19px] font-semibold text-xs rounded bg-[#CCEAFF] text-[#47B5FF]"
+                data-aos="fade-left"
+                data-aos-duration="500" onClick={showResponsibilityModal}
+                className="text-lg font-semibold text-white"
               >
-                20%
-              </button>
-              <button
-                onClick={showResponsibilityModal}
-                className="w-[36px] h-[19px] font-semibold text-xs rounded bg-[#FFEDCC] text-[#FFAE1B]"
-              >
-                40%
-              </button>
-              <button
-                onClick={showResponsibilityModal}
-                className="w-[36px] h-[19px] font-semibold text-xs rounded bg-[#E2CCFF] text-[#9747FF]"
-              >
-                60%
-              </button>
-              <button
-                onClick={showResponsibilityModal}
-                className="w-[36px] h-[19px] font-semibold text-xs rounded bg-[#144A6B] text-[#FFFFFF]"
-              >
-                80%
-              </button>
-              <button
-                onClick={showResponsibilityModal}
-                className="w-[40px] h-[19px] font-semibold text-xs rounded bg-[#D4F7E9] text-[#24BF81]"
-              >
-                100%
+                Proceed
               </button>
             </div>
           </>
@@ -356,38 +318,29 @@ const ForNewUser = ({ setModal, number }) => {
             <p className="font-semibold text-lg px-2 mb-5 text-center">
               What Is Responsibility level Of {number} ?
             </p>
-            <div className="flex items-center justify-center space-x-2">
+            <div className="flex items-center justify-center space-x-4">
+              <Box width={220}>
+                <Slider defaultValue={10} sx={{
+                  color: '##DFF6FF',
+                  height: '8px'
+                }} aria-label="Default" valueLabelDisplay="auto" value={responsibilityValue} onChange={handleResChange} />
+              </Box>
+              <p className="-mt-2 text-sm ">{responsibilityValue} %</p>
+            </div>
+            <div
+              data-aos="fade-left"
+              data-aos-duration="500"
+              className="absolute bottom-6 bg-[#1363DF] w-[156px] h-[52px] rounded-lg flex items-center justify-center"
+            >
               <button
-                onClick={showLastModal}
-                className="w-[36px] h-[19px] font-semibold text-xs rounded bg-[#CCEAFF] text-[#47B5FF]"
+                data-aos="fade-left"
+                data-aos-duration="500" onClick={showLastModal}
+                className="text-lg font-semibold text-white"
               >
-                20%
-              </button>
-              <button
-                onClick={showLastModal}
-                className="w-[36px] h-[19px] font-semibold text-xs rounded bg-[#FFEDCC] text-[#FFAE1B]"
-              >
-                40%
-              </button>
-              <button
-                onClick={showLastModal}
-                className="w-[36px] h-[19px] font-semibold text-xs rounded bg-[#E2CCFF] text-[#9747FF]"
-              >
-                60%
-              </button>
-              <button
-                onClick={showLastModal}
-                className="w-[36px] h-[19px] font-semibold text-xs rounded bg-[#144A6B] text-[#FFFFFF]"
-              >
-                80%
-              </button>
-              <button
-                onClick={showLastModal}
-                className="w-[40px] h-[19px] font-semibold text-xs rounded bg-[#D4F7E9] text-[#24BF81]"
-              >
-                100%
+                Proceed
               </button>
             </div>
+
           </>
         )}
         {lastModal && (
