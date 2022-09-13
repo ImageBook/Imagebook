@@ -83,11 +83,7 @@ router.route("/updateRecievedRespects").post((req, res) => {
 
 });
 
-<<<<<<< HEAD
-router.route('/createNonExistingUser').post( (req,res)=>{
-=======
 router.route('/createNonExistingUser').post(async (req, res) => {
->>>>>>> 0242fbb6977682381ba5d12e8579256407c3fa05
 
   const user = new User({
     registered: false,
@@ -97,11 +93,7 @@ router.route('/createNonExistingUser').post(async (req, res) => {
     recievedRespects: []
   })
 
-<<<<<<< HEAD
-   user.save().then(()=>res.send(user));
-=======
   await user.save().then(() => res.send(user));
->>>>>>> 0242fbb6977682381ba5d12e8579256407c3fa05
 
 })
 
