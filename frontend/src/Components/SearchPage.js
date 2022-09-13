@@ -78,7 +78,7 @@ const SearchPage = () => {
         <div className="w-11/12 mx-auto mt-12 flex justify-center items-center space-x-3">
           <div className="border-[2px] border-[#EBF1F4] rounded-[10px] p-[10px] h-12 text-lg flex ">
             <Search style={{ color: "#5E849C" }} />
-            <input type="tel" style={{ outline: "none" }} className="placeholder-[#5E849C]" placeholder="Type Here" onChange={(e) => setInput(e.target.value)} />
+            <input type="tel" style={{ outline: "none" }} className="placeholder-[#5E849C] w-[200px]" placeholder="Type Here" onChange={(e) => setInput(e.target.value)} />
           </div>
           <div
             className="w-[44px] h-12 shadow-lg rounded-xl flex items-center justify-center"

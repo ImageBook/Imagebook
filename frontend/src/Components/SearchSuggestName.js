@@ -29,10 +29,10 @@ const SearchSuggestName = () => {
   return (
     <>
       <Navigator heading="Suggest Name" backHandler={backHandler} />
-      <div className="flex items-center gap-[10px] pl-[10px] box-border border-2 rounded-md w-5/6 m-auto mt-[30px]">
+      <div className="flex items-center gap-[10px] pl-[10px] box-border border-2 rounded-md w-5/6 mx-auto mt-[30px]">
         <PersonAddIcon style={{ color: "#5E849C", fontSize: "24px" }} />
         <input
-          className="placeholder-gray-500"
+          className="placeholder-gray-500 w-[220px]"
           style={{ outline: "none", height: "48px" }}
           type="text"
           placeholder="First Name"
