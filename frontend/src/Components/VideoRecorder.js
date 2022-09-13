@@ -116,29 +116,29 @@ const VideoRecorder = () => {
       if (response.status === 200) {
 
         let link = response.data.secure_url;
-        let obj={
-          number:userCtx.loggedInUser.number,
-          respects:{
-            time:Date.now(),
-            postedFor:location.state.id,
-            url:link,
+        let obj = {
+          number: userCtx.loggedInUser.number,
+          respects: {
+            time: Date.now(),
+            postedFor: location.state.id,
+            url: link,
             postedBy: userCtx.loggedInUser.number,
             cameraUsed: cameraMode
           }
         }
-        let obj1={
-          name:location.state.name,
-          number:location.state.id,
-          respects:{
-            time:Date.now(),
-            postedFor:location.state.id,
-            url:link,
+        let obj1 = {
+          name: location.state.name,
+          number: location.state.id,
+          respects: {
+            time: Date.now(),
+            postedFor: location.state.id,
+            url: link,
             postedBy: userCtx.loggedInUser.number,
             cameraUsed: cameraMode
           }
         }
-        axios.post(`http://localhost:5000/updateGivenRespects`,obj)
-        axios.post(`http://localhost:5000/updateRecievedRespects`,obj1)
+        axios.post(`https://imagebook-digilabs.herokuapp.com/updateGivenRespects`, obj)
+        axios.post(`https://imagebook-digilabs.herokuapp.com/updateRecievedRespects`, obj1)
         console.log("done");
 
       }

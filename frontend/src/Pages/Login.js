@@ -128,16 +128,16 @@ const Login = () => {
         e.preventDefault();
         const confirmationResult = window.confirmationResult;
         confirmationResult.confirm(otp).then((result) => {
-            fetch(`http://localhost:5000/getUsers/${number}`)
+            fetch(`https://imagebook-digilabs.herokuapp.com/getUsers/${number}`)
                 .then(res => res.json())
                 .then(data => {
                     // console.log('data', data);
-                    if (data.length === 0 || data[0]?.registered===false) {
+                    if (data.length === 0 || data[0]?.registered === false) {
                         setHidden(true);
                     }
                     else {
                         userCtx.setLogin(data[0]);
-                        localStorage.setItem('loggedInUser',number);
+                        localStorage.setItem('loggedInUser', number);
                         navigate('/home');
                     }
                 })
