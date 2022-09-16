@@ -7,6 +7,7 @@ import yes from "../Assets/yes.png";
 import no from "../Assets/no.png";
 import RespectModal from "./RespectModal";
 import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const SuggestName = () => {
   const [name, setName] = useState("");
@@ -20,12 +21,12 @@ const SuggestName = () => {
     navigate(-1);
   };
 
-  const closeHandler = () => {
-    setModal(false);
-  };
-  const modalOpenHandler = () => {
-    setModal(true);
-  };
+  const createUserHandler = async ()=>{
+    const obj = {name:name,number:location.state.id}
+    const res = await axios.post('http://localhost:5000/createNonExistingUser',obj);
+    
+    navigate('/newCreatedUserProfile',{state:{id:location.state.id}});
+  }
   return (
     <>
       <Navigator heading="Suggest Name" backHandler={backHandler} />
@@ -39,7 +40,7 @@ const SuggestName = () => {
           onChange={(e) => setName(e.target.value)}
         />
       </div>
-      {name.length === 0 && (
+      
         <div className="flex flex-col gap-8 text-center justify-center items-center h-[70vh]">
           <div className="flex flex-col items-center">
           <img src={ContactIcon} />
@@ -49,72 +50,20 @@ const SuggestName = () => {
           </p>
           </div>
         </div>
-      )}
-      {name.length !== 0 && (
-        <>
-          <div className="flex flex-col items-center justify-center h-[60vh]">
-            <img src={DoYouKnowImage} className="" />
-            <div className="flex flex-col gap-[30px]">
-              <p className="font-semibold text-lg text-center">
-                Does that person know you?
-              </p>
-              <div className="flex flex-row justify-center gap-4">
-                <div
-                  className="flex items-center gap-1"
-                  style={{
-                    backgroundColor: "#D4F7E9",
-                    padding: "5px",
-                    borderRadius: "5px",
-                    opacity:yesNo==='Yes'?"1":"0.5",
-                  }}
-                  onClick={(e)=>setYesNo('Yes')}
-                >
-                  <img src={yes} />
-                  <p className="text-[#24BF81]">Yes</p>
-                </div>
-                <div
-                  
-                  className="flex items-center gap-1"
-                  style={{
-                    backgroundColor: "#FED4CD",
-                    padding: "5px",
-                    borderRadius: "5px",
-                    opacity:yesNo==='No'?"1":"0.5",
-                  }}
-                  
-                  onClick={(e)=>setYesNo('No')}
-                >
-                  <img src={no} />
-                  <p className="text-[#FC5337]">No</p>
-                </div>
-              </div>
-            </div>
-            <button
-            disabled={(yesNo!="Yes"&&yesNo!="No")}
-              onClick={modalOpenHandler}
-              style={{
+        <button
+        onClick={createUserHandler}
+        disabled={!name}
+        style={{
                 backgroundColor: "#1363DF",
                 color: "white",
                 width: "90%",
                 height: "52px",
                 borderRadius: "10px",
                 margin: "24px",
-                opacity: yesNo!==''?"1":"0.5"
-              }}
-              className="absolute bottom-0"
-            >
-              Select Purpose
-            </button>
-          </div>
-          {modal && (
-            <RespectModal
-              name={name}
-              number={location.state.id}
-              closeHandler={closeHandler}
-            />
-          )}
-        </>
-      )}
+                opacity: name?"1":"0.5"
+              }}>Suggest Name</button>
+     
+      
     </>
   );
 };

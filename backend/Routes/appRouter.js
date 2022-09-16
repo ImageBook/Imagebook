@@ -85,16 +85,32 @@ router.route("/updateRecievedRespects").post((req, res) => {
 
 router.route('/createNonExistingUser').post(async (req, res) => {
 
-  const user = new User({
-    registered: false,
-    name: req.body.name,
-    number: req.body.number,
-    givenRespects: [],
-    recievedRespects: []
+  User.find({number:req.body.number}).then((foundData)=>{
+    if(foundData.length===0){
+      const user = new User({
+        registered: false,
+        name: req.body.name,
+        number: req.body.number,
+        givenRespects: [],
+        recievedRespects: []
+      })
+       user.save().then(() => res.send(user));
+    }
+    else{
+      User.findOneAndUpdate({number:req.body.number},{name:req.body.name}).then((doc)=>res.send(doc))
+    }
   })
 
-  await user.save().then(() => res.send(user));
+  
 
+  
+
+})
+
+router.route('/searchUserPartialNumber/:id').get(async (req,res)=>{
+  let field = req.params.id;
+  
+  User.findOne({ number: { $regex: field.substring(1) , $options: "i" } }).then((foundData)=>res.send(foundData));
 })
 
 

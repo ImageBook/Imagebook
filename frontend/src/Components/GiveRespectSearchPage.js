@@ -1,5 +1,5 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import leftIcon from "../images/Notifications/Left Icon.png";
 import loveIcon from "../images/Home/Right Icon.png";
 import notification from "../images/Home/Right Icon (1).png";
@@ -8,10 +8,16 @@ import search from "../images/Notifications/search.png";
 import ContactEach from "./ContactEach";
 import { useState } from "react";
 import ohNoImage from "../Assets/ohNoImage.png";
-import PhoneInput from "react-phone-number-input";
+import add from '../Assets/add.png'
+import 'react-phone-number-input/style.css'
+import { isPossiblePhoneNumber } from 'react-phone-number-input'
+import PhoneInput from 'react-phone-number-input'
 import GiveRespectEachContact from "./GiveRespectEachContact";
+import axios from "axios";
 
 const GiveRespectSearchPage = () => {
+  const location = useLocation();
+  console.log(location.state.id);
   const arr = [
     {
       name: "Aarush Mishra",
@@ -24,20 +30,32 @@ const GiveRespectSearchPage = () => {
       img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80",
     },
   ];
-  const unreg = [
-    {
-      name: "Aarush Mishra",
-      number: "+9189237348934",
-      img: "https://media.istockphoto.com/photos/portrait-of-handsome-latino-african-man-picture-id1007763808?k=20&m=1007763808&s=612x612&w=0&h=q4qlV-99EK1VHePL1-Xon4gpdpK7kz3631XK4Hgr1ls=",
-    },
-    {
-      name: "Bhageerathi Patel",
-      number: "+9189237348934",
-      img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80",
-    },
-  ];
+  
   const navigate = useNavigate();
   const [input, setInput] = useState("");
+  const [searchResult,setSearchResult] =useState({});
+
+
+  useEffect(()=>{
+    onInputChange();
+  },[input])
+
+  const onInputChange = async ()=>{
+    const res = await axios.get(`http://localhost:5000/searchUserPartialNumber/${input}`)
+    const data = res.data;
+    if(data){
+      setSearchResult({
+        name: data.name,
+        number: data.number,
+        img: data.image,
+        registered:data.registered
+      })
+    }
+    if(!data){
+      setSearchResult(null)
+    }
+  }
+  
 
   const goToNotifications = () => {
     navigate("/notifications");
@@ -96,22 +114,22 @@ const GiveRespectSearchPage = () => {
             </p>
           </div>
         )}
+        {
+          input && <div className=" w-11/12 mx-auto mt-[27px]">
+          <p
+            style={{ color: "#5E849C" }}
+            className="text-sm font-semibold"
+          >
+            Suggested Results
+          </p>
+          
+        </div>
+        }
         {input?.length !== 0 &&
-          unreg.filter((obj) => obj.number.includes(input)).length !== 0 &&
           arr.filter((obj) => obj.number.includes(input)).length !== 0 && (
             <>
               
-              <div className="flex flex-row justify-between w-11/12 mx-auto mt-[27px]">
-                <p
-                  style={{ color: "#5E849C" }}
-                  className="text-sm font-semibold"
-                >
-                  Contacts on ImageBook
-                </p>
-                <p style={{ color: "#47B5FF" }} className="text-sm underline">
-                  View All
-                </p>
-              </div>
+              
               <div className="flex flex-col gap-3 mt-[20px]">
                 {arr
                   .filter((obj) => obj.number.includes(input))
@@ -121,31 +139,20 @@ const GiveRespectSearchPage = () => {
               </div>
             </>
           )}
-        {input &&
-          unreg.filter((obj) => obj.number.includes(input)).length === 0 &&
+          {(input &&  arr.filter((obj) => obj.number.includes(input)).length === 0 && searchResult && searchResult.registered==true ) && <div className="mt-[20px]">
+            
+              <GiveRespectEachContact item={searchResult}/>
+            </div>}
+        {input && !searchResult && isPossiblePhoneNumber(input) &&
           arr.filter((obj) => obj.number.includes(input)).length === 0 && (
             <>
-              <div
-                style={{ color: "#5E849C" }}
-                className="text-sm font-semibold ml-[20px] mt-[20px]"
-              >
-                <img src={ohNoImage} />
+              <div className="w-11/12 flex flex-row justify-between items-center mt-[20px] mx-auto bg-[#F5F8FA] rounded-xl h-[70px] px-[15px]" onClick={suggestNameHandler}>
+                  <div className="flex flex-col gap-0.5 ">
+                    <p className="text-lg">{input}</p>
+                    <p className="text-sm text-[#5E849C]">Unregistered</p>
+                  </div>
+                  <img src={add}/>
               </div>
-              <p style={{color:"#416C87",textAlign:"center",width:"50%",margin:"auto",marginTop:"30px"}}>Oh no! Its seem like unknown number. Please suggest name.</p>
-              <button
-              onClick={suggestNameHandler}
-                style={{
-                  backgroundColor: "#1363DF",
-                  color: "white",
-                  width: "90%",
-                  height: "52px",
-                  borderRadius: "10px",
-                  margin: "24px",
-                }}
-                className="absolute bottom-0"
-              >
-                Suggest Name
-              </button>
             </>
           )}
       </div>

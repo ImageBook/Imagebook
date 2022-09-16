@@ -17,6 +17,7 @@ import ContinueByName from './components/ContinueByName';
 import EditProfile from './Pages/EditProfile';
 import SearchSuggestName from './components/SearchSuggestName';
 import DisplayVideo from './components/DisplayVideo';
+import NewCreatedUserProfile from './components/NewCreatedUserProfile';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
       <Route path='/edit-profile' element={<EditProfile />}></Route>
       <Route path='/watch-video' element={<DisplayVideo></DisplayVideo>}></Route>
       <Route path='/searchSuggestName' element={<SearchSuggestName></SearchSuggestName>}></Route>
+      <Route path='/newCreatedUserProfile' element={<NewCreatedUserProfile/>}></Route>
     </Routes>
   );
 }
