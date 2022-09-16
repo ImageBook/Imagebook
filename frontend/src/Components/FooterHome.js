@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
-import home from "../images/Home/bxs_home.png";
-import film from "../images/Home/film-fill.png";
-import trophy from "../images/Home/fluent_trophy-24-filled.png";
-import person from "../images/Home/carbon_user-filled.png";
-import plus from "../images/Home/plus.png";
+import home from "../images/Home/home.svg";
+import film from "../images/Home/film-fill.svg";
+import people from "../images/Home/people.svg";
+import person from "../images/Home/profile.svg";
+// import plus from "../images/Home/plus.png";
 import { useNavigate } from "react-router-dom";
 import { borderRadius } from "@mui/system";
 import UserContext from "../store/userContext";
+import plus from '../images/Home/plus.svg';
 
 const FooterHome = () => {
   const userCtx = useContext(UserContext);
@@ -41,11 +42,11 @@ const FooterHome = () => {
               className="flex items-center justify-center"
               onClick={openSearchHandler}
             >
-              <img className="mt-[15px]" src={plus} alt="" />
+              <img className="mt-[20px]" src={plus} alt="" />
             </div>
           </div>
         </div>
-        <img src={trophy} alt="" />
+        <img src={people} alt="" />
         <img src={person} onClick={navigateProfileHandler} alt="" />
       </div>
     </div>

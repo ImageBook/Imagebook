@@ -7,7 +7,7 @@ import InvitePeople from '../components/InvitePeople';
 import FooterHome from '../components/FooterHome';
 import HomeSidebar from '../components/HomeSidebar';
 import xIcon from '../images/Home/🎨 Icon Сolor.png';
-import searchIcon from '../images/Home/searchIcon.png';
+import searchIcon from '../images/Home/search.svg';
 import user from '../images/Home/Small Card Images.png';
 import checkIcon from '../images/Home/filled color.png';
 import wallet from '../images/Home/wallet-03.png';
@@ -21,6 +21,10 @@ import auth from '../firebase.init';
 import { signOut } from "firebase/auth";
 import { useContext } from 'react';
 import UserContext from '../store/userContext';
+import respect from '../images/Home/respect.svg';
+import goodLuck from '../images/Home/goodLuck.svg';
+import promise from '../images/Home/promise.svg';
+import feedback from '../images/Home/feedback.svg';
 
 const Home = () => {
     const userCtx = useContext(UserContext);
@@ -43,17 +47,50 @@ const Home = () => {
     }
 
     return (
-        <div className='font-poppins relative flex flex-col justify-between min-h-screen'>
+        <div className='font-poppins relative min-h-screen'>
             <Navbar sidebar={sidebar} setSidebar={setSidebar}></Navbar>
-            <div className='w-11/12 mx-auto mb-6 relative'>
-                <input onFocus={goToSearch} className='w-full h-12 rounded-[10px] border-2 border-[#EBF1F4] pl-10 focus:outline-none text-lg text-[#5E849C]' type="text" name="" id="" placeholder='Find Respected People' />
+            <div className='w-11/12 mx-auto mb-8 relative'>
+                <input onFocus={goToSearch} className='w-full h-12 rounded-[10px] border-2 border-[#EBF1F4] pl-10 focus:outline-none text-lg text-[#5E849C]' type="text" name="" id="" placeholder='Check reputation' />
                 <img className='absolute top-[14px] left-3' src={searchIcon} alt="" />
             </div>
-            <div className='w-11/12 mx-auto flex items-center justify-between space-x-3 mb-6'>
+            <div className='w-11/12 mx-auto '>
+                <p className='text-[#416C87] font-semibold text-sm mb-4'>Spread Feelings</p>
+                <div className='grid grid-cols-2 justify-center gap-x-2 gap-y-4 mb-8'>
+                    <div style={{ backgroundColor: 'rgba(154, 134, 164, 0.25)' }} className='w-[155px] h-[115px] rounded-2xl px-3 py-2 relative'>
+                        <div className='flex items-center justify-start space-x-1 '>
+                            <img src={respect} alt="" />
+                            <p className='text-[#06283D] font-semibold text-xl'>Respect</p>
+                        </div>
+                        <p className='text-xs text-[#1B2328] absolute bottom-4'>Give respect to the deserved ones.</p>
+                    </div>
+                    <div style={{ backgroundColor: 'rgba(177, 188, 230, 0.25)' }} className='w-[155px] h-[115px] rounded-2xl px-3 py-2 relative'>
+                        <div className='flex items-center justify-start space-x-1 '>
+                            <img src={goodLuck} alt="" />
+                            <p className='text-[#06283D] font-semibold text-xl'>Good Luck</p>
+                        </div>
+                        <p className='text-xs text-[#1B2328] absolute bottom-4'>Give wishes to the beloved ones.</p>
+                    </div>
+                    <div style={{ backgroundColor: 'rgba(183, 229, 221, 0.25)' }} className='w-[155px] h-[115px] rounded-2xl px-3 py-2 relative'>
+                        <div className='flex items-center justify-start space-x-1 '>
+                            <img src={promise} alt="" />
+                            <p className='text-[#06283D] font-semibold text-xl'>Promise</p>
+                        </div>
+                        <p className='text-xs text-[#1B2328] absolute bottom-4'>Give promise for the assurance.</p>
+                    </div>
+                    <div style={{ backgroundColor: 'rgba(241, 240, 192, 0.25)' }} className='w-[155px] h-[115px] rounded-2xl px-3 py-2 relative'>
+                        <div className='flex items-center justify-start space-x-1 '>
+                            <img src={feedback} alt="" />
+                            <p className='text-[#06283D] font-semibold text-xl'>Feedback</p>
+                        </div>
+                        <p className='text-xs text-[#1B2328] absolute bottom-4'>Give review based on your exp.</p>
+                    </div>
+                </div>
+            </div>
+            {/* <div className='w-11/12 mx-auto flex items-center justify-between space-x-3 mb-6'>
                 <button className='w-[180px] h-[52px] rounded-lg font-semibold text-lg text-white bg-[#1363DF]'>Join Contest</button>
                 <button className='w-[180px] h-[52px] rounded-lg font-semibold text-lg text-[#416C87]  bg-[#DFF6FF]'>Mission</button>
-            </div>
-            <div className='w-11/12 h-32 mx-auto mb-6 bg-gradient-to-r from-[#B74CD5] to-[#774CD5] rounded-[10px] relative'>
+            </div> */}
+            {/* <div className='w-11/12 h-32 mx-auto mb-6 bg-gradient-to-r from-[#B74CD5] to-[#774CD5] rounded-[10px] relative'>
                 <div className='absolute top-[16px] left-[16px]'>
                     <p className='font-semibold text-[22px] text-white leading-none'>Kon Banega, <br /> Respect Pati</p>
                 </div>
@@ -63,10 +100,10 @@ const Home = () => {
                 <div className='absolute right-[14px] -top-[10px]'>
                     <img src={trophy} alt="" />
                 </div>
-            </div>
+            </div> */}
             <RespectReceived></RespectReceived>
-            <SpreadRespect></SpreadRespect>
-            <InvitePeople></InvitePeople>
+            {/* <SpreadRespect></SpreadRespect> */}
+            {/* <InvitePeople></InvitePeople> */}
             <FooterHome></FooterHome>
             {
                 sidebar && <div data-aos="fade-right"

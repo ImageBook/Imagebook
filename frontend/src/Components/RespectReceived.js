@@ -7,7 +7,7 @@ import card2 from "../images/Home/Media Card1.png";
 const RespectReceived = () => {
     return (
         <div className='w-11/12 mx-auto'>
-            <p className='font-semibold text-sm text-[#416C87] mb-4'>Respect Received</p>
+            <p className='font-semibold text-sm text-[#416C87] mb-4'>Feelings Received</p>
             <div className='mb-6'>
                 <Swiper
                     spaceBetween={5}
