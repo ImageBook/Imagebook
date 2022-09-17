@@ -11,46 +11,46 @@ import playIcon from '../images/Profile/play_circle.svg';
 
 
 const EachRespect = (props) => {
-    const [reciever, setReciever] = useState({});
-    const [sender, setSender] = useState({});
+    // const [reciever, setReciever] = useState({});
+    // const [sender, setSender] = useState({});
     const navigate = useNavigate();
 
-    const videoData = {
-        senderName: sender?.name,
-        recieverName: reciever?.name,
-        video: props.url,
-        senderImage: sender?.image
-    };
+    // const videoData = {
+    //     senderName: sender?.name,
+    //     recieverName: reciever?.name,
+    //     video: props.url,
+    //     senderImage: sender?.image
+    // };
     const { each } = props;
 
 
-    useEffect(() => {
-        getSender();
-        getReciever();
-    }, []);
+    // useEffect(() => {
+    //     getSender();
+    //     getReciever();
+    // }, []);
 
-    const getSender = async () => {
-        const res = await axios.get(
-            `https://imagebook-digilabs.herokuapp.com/getUsers/${props.sender}`
-        );
-        const data = res?.data;
-        setSender(data[0]);
-    };
+    // const getSender = async () => {
+    //     const res = await axios.get(
+    //         `https://imagebook-digilabs.herokuapp.com/getUsers/${props.sender}`
+    //     );
+    //     const data = res?.data;
+    //     setSender(data[0]);
+    // };
 
-    const getReciever = async () => {
-        const res = await axios.get(
-            `https://imagebook-digilabs.herokuapp.com/getUsers/${props.reciever}`
-        );
-        const data = res?.data;
-        setReciever(data[0]);
-    };
+    // const getReciever = async () => {
+    //     const res = await axios.get(
+    //         `https://imagebook-digilabs.herokuapp.com/getUsers/${props.reciever}`
+    //     );
+    //     const data = res?.data;
+    //     setReciever(data[0]);
+    // };
 
     const goToDisplayVideo = () => {
-        navigate(`/watch-video`);
+        navigate(`/watch-video`, { state: { video: each } });
     }
 
     return (
-        <div className='mx-auto relative hover:cursor-pointer'>
+        <div onClick={goToDisplayVideo} className='mx-auto relative hover:cursor-pointer'>
             <video
                 style={{ height: "180px", minHeight: "180px" }}
                 className=" w-[120px] h-[100px] rounded-lg"

@@ -1,12 +1,16 @@
 import React from 'react';
 import leftIcon from '../images/Notifications/Left Icon.png';
 import { useLocation, useNavigate } from 'react-router-dom';
-import emoji1 from '../images/Expand extention.png';
-import emoji2 from '../images/Reward Trust.png';
+import emoji1 from '../images/Profile/Expand extention.svg';
+import emoji2 from '../images/Profile/Reward Trust.svg';
 import emoji3 from '../images/Send Clap.png';
-import emoji4 from '../images/ShareIcon.png';
+import emoji4 from '../images/Profile/Polygon_16.svg';
 import dots from '../images/more-horizontal.png';
 import clock from '../images/clock.png';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 
 const DisplayVideo = () => {
@@ -16,45 +20,45 @@ const DisplayVideo = () => {
     }
 
     const { state } = useLocation();
+    // const video = location.state.video;
+    // console.log('video', state.video);
+    const video = state.video;
 
     return (
         <div>
-            <div className='w-11/12 mx-auto my-6'>
-                <div className='flex items-center justify-between'>
-                    <div className='flex items-center space-x-2'>
-                        <img onClick={goToProfile} className='hover:cursor-pointer' src={leftIcon} alt="" />
-                        <p className='font-medium text-xl text-[#06283D]'>Given Respect</p>
+            <div className='relative object-cover w-full'>
+                <video className='object-cover w-full h-screen' autoPlay loop src={video.url}></video>
+                <div className='absolute right-4 bottom-28 '>
+                    <div className='space-y-3 flex flex-col justify-center items-center'>
+                        <img className='' src={emoji1} alt="" />
+                        <img className='' src={emoji2} alt="" />
+                        <img className='pt-1' src={emoji4} alt="" />
                     </div>
                 </div>
-            </div>
-            <div  className='relative object-cover w-full'>
-                <video style={{ minHeight: 'calc(100vh - 110px)',transform: state.cameraUsed==='user'? 'scaleX(-1)':'' }} className='object-cover w-full' autoPlay playsInline src={state.video}></video>
-                <div className='absolute right-4 bottom-16 space-y-3'>
-                    <img className='' src={emoji1} alt="" />
-                    <img className='' src={emoji2} alt="" />
-                    <img className='' src={emoji3} alt="" />
-                    <img className='' src={emoji4} alt="" />
+                <div className='absolute top-6 left-3'>
+                    <div className='flex items-center space-x-2'>
+                        <ArrowBackIcon onClick={goToProfile} className='text-white w-[18px] h-[16px]'></ArrowBackIcon>
+                        <p className='font-medium text-xl text-white'>Watch Video</p>
+                    </div>
                 </div>
-            </div>
-            <div className='fixed left-0 right-0 bottom-0 z-10 bg-[#F2F6F8]'>
-                <div className='w-full rounded-t-[10px] bg-[#F2F6F8]'>
-                    <div className='w-11/12 mx-auto flex items-center justify-between bg-[#F2F6F8] rounded-b-2xl py-4'>
-                        <div className='pl-[10px] flex gap-2 items-center'>
-                            <img className='w-[50px] h-[50px] mr-2' style={{ borderRadius: "100px" }} src={state.senderImage} alt="" />
-                            <div className='flex flex-col items-start space-y-1'>
-                                <p className='text-[#1B2328] text-sm '>{state.senderName} <span className='font-bold'>Respected</span> {state.recieverName}</p>
-                                <div className='flex items-center space-x-1'>
-                                    <img className='' src={clock} alt="" />
-                                    <p className='text-[#5E849C] font-medium text-xs'>45 min. ago</p>
-                                </div>
+                <div className='absolute bottom-12 right-[26px] flex justify-center items-center'>
+                    <MoreVertIcon className='text-white w-[20px] h-[20px]'></MoreVertIcon>
+                </div>
+                <div className='absolute bottom-6 left-3'>
+                    <div className='flex items-center space-x-3 text-white'>
+                        {/* <img src={emoji3} alt="" /> */}
+                        <AccountCircleIcon style={{width: '50px', height: '50px'}} className=''></AccountCircleIcon>
+                        <div className='flex flex-col items-start space-y-1'>
+                            <p className='text-sm w-[270px]'>{video.postedBy} <span className='font-bold'>Respected</span> {video.postedFor}</p>
+                            <div className='flex items-center space-x-1'>
+                                <AccessTimeIcon style={{width: '18px', height: '18px'}} className='text-white'></AccessTimeIcon>
+                                <p className='font-medium text-xs'>45 min ago.</p>
                             </div>
                         </div>
-                        <div>
-                            <img src={dots} alt="" />
-                        </div>
                     </div>
                 </div>
             </div>
+            
         </div>
     );
 };

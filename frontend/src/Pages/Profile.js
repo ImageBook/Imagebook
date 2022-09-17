@@ -63,98 +63,101 @@ const Profile = () => {
   const navigateToDisplay = (route) => {
     navigate('/showProfile', { state: { id: route, obj: obj } });
   }
+  const goHome = () => {
+    navigate('/home');
+  }
 
   return (
     <>
       <Navigator heading="Profile" backHandler={backHandler} icon="share" />
-      {!notExist && 
-      (
-        <>
-          <div className="flex flex-col items-center gap-3 justify-center mt-[40px]">
-            <img
-              style={{ width: "75px", height: "75px", borderRadius: "50%" }}
-              src={obj?.image}
-            />
-            <div className="flex gap-2 items-center">
-              <p className="text-xl font-semibold">{obj?.name}</p>
-              {isRegistered && <img src={tikFill} alt="" />}
-              {!isRegistered && <img src={editIcon} />}
-            </div>
-            <div className="flex gap-0.5">
-              <p style={{ color: "#5E849C" }} className="text-sm font-semibold">
-                {obj?.number}
-              </p>
-              {!isRegistered && (
-                <div className="flex gap-0.5">
-                  <p
-                    style={{ color: "#5E849C" }}
-                    className="text-sm font-semibold"
-                  >
-                    •
-                  </p>
-                  <p
-                    style={{ color: "#5E849C" }}
-                    className="text-sm font-semibold"
-                  >
-                    Unregistered
-                  </p>
+      {!notExist &&
+        (
+          <>
+            <div className="flex flex-col items-center gap-3 justify-center mt-[40px]">
+              <img
+                style={{ width: "75px", height: "75px", borderRadius: "50%" }}
+                src={obj?.image}
+              />
+              <div className="flex gap-2 items-center">
+                <p className="text-xl font-semibold">{obj?.name}</p>
+                {isRegistered && <img src={tikFill} alt="" />}
+                {!isRegistered && <img src={editIcon} />}
+              </div>
+              <div className="flex gap-0.5">
+                <p style={{ color: "#5E849C" }} className="text-sm font-semibold">
+                  {obj?.number}
+                </p>
+                {!isRegistered && (
+                  <div className="flex gap-0.5">
+                    <p
+                      style={{ color: "#5E849C" }}
+                      className="text-sm font-semibold"
+                    >
+                      •
+                    </p>
+                    <p
+                      style={{ color: "#5E849C" }}
+                      className="text-sm font-semibold"
+                    >
+                      Unregistered
+                    </p>
+                  </div>
+                )}
+              </div>
+              {isRegistered && (
+                <div
+                  style={{
+                    background:
+                      "linear-gradient(270deg, #6A11CB 0%, #2575FC 100%)",
+                  }}
+                  className="flex items-center gap-1 text-white px-[10px] py-[2px] rounded-xl"
+                >
+                  <ShieldIcon style={{ fontSize: "17px" }} />
+                  <p className="text-sm font-semibold">{`${(obj.recievedRespects?.length / obj.givenRespects?.length) *
+                    100
+                    }%`}</p>
                 </div>
               )}
             </div>
-            {isRegistered && (
-              <div
-                style={{
-                  background:
-                    "linear-gradient(270deg, #6A11CB 0%, #2575FC 100%)",
-                }}
-                className="flex items-center gap-1 text-white px-[10px] py-[2px] rounded-xl"
-              >
-                <ShieldIcon style={{ fontSize: "17px" }} />
-                <p className="text-sm font-semibold">{`${(obj.recievedRespects?.length / obj.givenRespects?.length) *
-                  100
-                  }%`}</p>
-              </div>
-            )}
-          </div>
 
-          {/* Changes made here */}
-          <div className='w-11/12 mx-auto mt-12'>
-            <p className='text-[#416C87] font-semibold text-sm mb-4'>Received Feelings</p>
-            <div className='grid grid-cols-2 justify-center gap-x-2 gap-y-4 mb-8'>
-              <div onClick={(e) => navigateToDisplay("Respect")} style={{ backgroundColor: 'rgba(154, 134, 164, 0.25)' }} className=' h-[115px] rounded-2xl px-3 py-2 relative hover:cursor-pointer'>
-                <div className='flex items-center justify-start space-x-1 '>
-                  <img src={respect} alt="" />
-                  <p className='text-[#06283D] font-semibold text-xl'>Respect</p>
+            {/* Changes made here */}
+            <div className='w-11/12 mx-auto mt-12'>
+              <p className='text-[#416C87] font-semibold text-sm mb-4'>Received Feelings</p>
+              <div className='grid grid-cols-2 justify-center gap-x-2 gap-y-4 mb-8'>
+                <div onClick={(e) => navigateToDisplay("Respect")} style={{ backgroundColor: 'rgba(154, 134, 164, 0.25)' }} className=' h-[115px] rounded-2xl px-3 py-2 relative hover:cursor-pointer'>
+                  <div className='flex items-center justify-start space-x-1 '>
+                    <img src={respect} alt="" />
+                    <p className='text-[#06283D] font-semibold text-xl'>Respect</p>
+                  </div>
+                  <p className='text-xs text-[#1B2328] absolute bottom-4'>Give respect to the deserved ones.</p>
                 </div>
-                <p className='text-xs text-[#1B2328] absolute bottom-4'>Give respect to the deserved ones.</p>
-              </div>
-              <div onClick={(e) => navigateToDisplay("Good Luck")} style={{ backgroundColor: 'rgba(177, 188, 230, 0.25)' }} className=' h-[115px] rounded-2xl px-3 py-2 relative hover:cursor-pointer'>
-                <div className='flex items-center justify-start space-x-1 '>
-                  <img src={goodLuck} alt="" />
-                  <p className='text-[#06283D] font-semibold text-xl'>Good Luck</p>
+                <div onClick={(e) => navigateToDisplay("Good Luck")} style={{ backgroundColor: 'rgba(177, 188, 230, 0.25)' }} className=' h-[115px] rounded-2xl px-3 py-2 relative hover:cursor-pointer'>
+                  <div className='flex items-center justify-start space-x-1 '>
+                    <img src={goodLuck} alt="" />
+                    <p className='text-[#06283D] font-semibold text-xl'>Good Luck</p>
+                  </div>
+                  <p className='text-xs text-[#1B2328] absolute bottom-4'>Give wishes to the beloved ones.</p>
                 </div>
-                <p className='text-xs text-[#1B2328] absolute bottom-4'>Give wishes to the beloved ones.</p>
-              </div>
-              <div onClick={(e) => navigateToDisplay("Promise")} style={{ backgroundColor: 'rgba(183, 229, 221, 0.25)' }} className=' h-[115px] rounded-2xl px-3 py-2 relative hover:cursor-pointer'>
-                <div className='flex items-center justify-start space-x-1 '>
-                  <img src={promise} alt="" />
-                  <p className='text-[#06283D] font-semibold text-xl'>Promise</p>
+                <div onClick={(e) => navigateToDisplay("Promise")} style={{ backgroundColor: 'rgba(183, 229, 221, 0.25)' }} className=' h-[115px] rounded-2xl px-3 py-2 relative hover:cursor-pointer'>
+                  <div className='flex items-center justify-start space-x-1 '>
+                    <img src={promise} alt="" />
+                    <p className='text-[#06283D] font-semibold text-xl'>Promise</p>
+                  </div>
+                  <p className='text-xs text-[#1B2328] absolute bottom-4'>Give promise for the assurance.</p>
                 </div>
-                <p className='text-xs text-[#1B2328] absolute bottom-4'>Give promise for the assurance.</p>
-              </div>
-              <div onClick={(e) => navigateToDisplay("Feedback")} style={{ backgroundColor: 'rgba(241, 240, 192, 0.25)' }} className=' h-[115px] rounded-2xl px-3 py-2 relative hover:cursor-pointer'>
-                <div className='flex items-center justify-start space-x-1 '>
-                  <img src={feedback} alt="" />
-                  <p className='text-[#06283D] font-semibold text-xl'>Feedback</p>
+                <div onClick={(e) => navigateToDisplay("Feedback")} style={{ backgroundColor: 'rgba(241, 240, 192, 0.25)' }} className=' h-[115px] rounded-2xl px-3 py-2 relative hover:cursor-pointer'>
+                  <div className='flex items-center justify-start space-x-1 '>
+                    <img src={feedback} alt="" />
+                    <p className='text-[#06283D] font-semibold text-xl'>Feedback</p>
+                  </div>
+                  <p className='text-xs text-[#1B2328] absolute bottom-4'>Give review based on your exp.</p>
                 </div>
-                <p className='text-xs text-[#1B2328] absolute bottom-4'>Give review based on your exp.</p>
               </div>
             </div>
-          </div>
 
 
 
-          {/* <div
+            {/* <div
             style={{ backgroundColor: "#EBF1F4" }}
             className=" flex text-center items-center w-11/12 mt-[24px] mx-auto h-[50px] rounded-md"
           >
@@ -239,10 +242,10 @@ const Profile = () => {
         </h1>
       )}
       {/* Footer starts */}
-      </>)}
+          </>)}
       <div className="w-full bg-[#F7F7F7] fixed bottom-0 z-50">
         <div className="flex items-center justify-between w-11/12 mx-auto py-4">
-          <img src={home} alt="" />
+          <img onClick={goHome} src={home} alt="" />
           <img src={film} alt="" />
 
           <div

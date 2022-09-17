@@ -19,6 +19,7 @@ import SearchSuggestName from './components/SearchSuggestName';
 import DisplayVideo from './components/DisplayVideo';
 import NewCreatedUserProfile from './components/NewCreatedUserProfile';
 import ShowProfile from './Pages/ShowProfile';
+import GoodWorkFeed from './Pages/GoodWorkFeed';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
       <Route path='/searchSuggestName' element={<SearchSuggestName></SearchSuggestName>}></Route>
       <Route path='/newCreatedUserProfile' element={<NewCreatedUserProfile/>}></Route>
       <Route path='/showProfile' element={<ShowProfile></ShowProfile>}></Route>
+      <Route path='/good-work-feed' element={<GoodWorkFeed></GoodWorkFeed>}></Route>
     </Routes>
   );
 }
