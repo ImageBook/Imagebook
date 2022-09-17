@@ -18,6 +18,7 @@ import EditProfile from './Pages/EditProfile';
 import SearchSuggestName from './components/SearchSuggestName';
 import DisplayVideo from './components/DisplayVideo';
 import NewCreatedUserProfile from './components/NewCreatedUserProfile';
+import ShowProfile from './Pages/ShowProfile';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
       <Route path='/watch-video' element={<DisplayVideo></DisplayVideo>}></Route>
       <Route path='/searchSuggestName' element={<SearchSuggestName></SearchSuggestName>}></Route>
       <Route path='/newCreatedUserProfile' element={<NewCreatedUserProfile/>}></Route>
+      <Route path='/showProfile' element={<ShowProfile></ShowProfile>}></Route>
     </Routes>
   );
 }
