@@ -2,7 +2,7 @@ import '../components/login.css';
 import 'react-phone-number-input/style.css';
 import PhoneInput from 'react-phone-number-input';
 import { isValidPhoneNumber } from 'react-phone-number-input'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import backSpace from '../images/num-pad/backspace.png';
 import rightIcon from '../images/num-pad/arrow-right.png';
 import OtpPage from '../components/OtpPage';
@@ -39,6 +39,12 @@ const Login = () => {
     //         element.nextSibling.focus();
     //     }
     // };
+
+    useEffect(()=>{
+        if(localStorage.getItem('loggedInUser')){
+            navigate('/home')
+        }
+    },[])
 
     const generateRecaptcha = () => {
         window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {

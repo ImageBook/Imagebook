@@ -25,7 +25,7 @@ const SuggestName = () => {
     const obj = {name:name,number:location.state.id}
     const res = await axios.post('http://localhost:5000/createNonExistingUser',obj);
     
-    navigate('/newCreatedUserProfile',{state:{id:location.state.id}});
+    navigate('/newCreatedUserProfile',{state:{id:location.state.id,request:location.state.request}});
   }
   return (
     <>
@@ -41,7 +41,7 @@ const SuggestName = () => {
         />
       </div>
       
-        <div className="flex flex-col gap-8 text-center justify-center items-center h-[70vh]">
+        <div className="flex flex-col gap-8 text-center justify-center items-center mt-[150px]">
           <div className="flex flex-col items-center">
           <img src={ContactIcon} />
           <p style={{ width: "85%", margin: "auto" }}>
@@ -54,6 +54,8 @@ const SuggestName = () => {
         onClick={createUserHandler}
         disabled={!name}
         style={{
+                position:"absolute",
+                bottom:"0",
                 backgroundColor: "#1363DF",
                 color: "white",
                 width: "90%",

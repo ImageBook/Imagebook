@@ -123,7 +123,8 @@ const VideoRecorder = () => {
             postedFor: location.state.id,
             url: link,
             postedBy: userCtx.loggedInUser.number,
-            cameraUsed: cameraMode
+            cameraUsed: cameraMode,
+            selectedType:location.state.request
           }
         }
         let obj1 = {
@@ -134,7 +135,8 @@ const VideoRecorder = () => {
             postedFor: location.state.id,
             url: link,
             postedBy: userCtx.loggedInUser.number,
-            cameraUsed: cameraMode
+            cameraUsed: cameraMode,
+            selectedType:location.state.request
           }
         }
         axios.post(`https://imagebook-digilabs.herokuapp.com/updateGivenRespects`, obj)
@@ -217,7 +219,7 @@ const VideoRecorder = () => {
       {!submitted && (
         <div className={styles.main}>
           <Navigator
-            heading="Video Review"
+            heading={`Record ${location.state.request}`}
             backHandler={backHandler}
             type="overlay"
           />

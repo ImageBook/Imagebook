@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import how_to_reg from '../Assets/how_to_reg.png'
+import Navigator from "./Navigator";
 
 const NewCreatedUserProfile = ()=>{
     const [user,setUser] = useState({});
+    const navigate = useNavigate()
     const location = useLocation();
 
     useEffect(()=>{
@@ -19,18 +21,29 @@ const NewCreatedUserProfile = ()=>{
         number:data[0].number,
         registered:data[0].registered})
     }
+    const recordVideoHandler = ()=>{
+        navigate('/video',{state:{id:user?.number,name:user?.name,request:location.state.request}})
+    }
+
+    const backhandler = ()=>{
+        navigate(-1);
+    }
 
     return(
-        <><div className="flex flex-col w-full items-center gap-1 mt-[80px]">
+        <>
+        <Navigator backHandler={backhandler}/>
+        <div className="flex flex-col w-full items-center gap-1 mt-[50px]">
             <img style={{height:"70px",width:"70px",borderRadius:"100px"}} src={user?.image} />
             <p className="text-xl font-semibold">{user?.name}</p>
             <p>{user?.number}</p>
         </div>
-        <div className="mt-[180px] flex flex-col items-center text-center">
+        <div className="mt-[140px] flex flex-col items-center text-center">
             <img src={how_to_reg} />
             <p className="text-[#DADADA] w-1/2 mx-auto">This profile has been generated.</p>
         </div>
-        <button  style={{
+        <button 
+        onClick={recordVideoHandler}
+        style={{
             backgroundColor: "#1363DF",
             color: "white",
             width: "90%",
@@ -38,7 +51,11 @@ const NewCreatedUserProfile = ()=>{
             borderRadius: "10px",
             margin: "24px",
           }}
-          className="absolute bottom-0">Record Respect</button>
+          className="absolute bottom-0"> {location.state.request==="Respect" && "Give Respect"}
+          {location.state.request==="Good Luck" && "Wish Good Luck"}
+          {location.state.request==="Promise" && "Make a Promise"}
+          {location.state.request==="Feedback" && "Share Feedback"}
+          </button>
         </>
     )
 }

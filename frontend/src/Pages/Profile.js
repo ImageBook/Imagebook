@@ -41,10 +41,6 @@ const Profile = () => {
     setObj(data[0]);
   };
 
-  const videoOpenHandler = () => {
-    navigate("/video", { state: { id: params.id } });
-  };
-
   const backHandler = () => {
     navigate("/home");
   };
@@ -131,18 +127,7 @@ const Profile = () => {
             </div>
           </div>
           <div className="mt-[20px] grid grid-cols-3 gap-x-1 gap-y-1">
-            {type === "given" && obj?.givenRespects?.length === 0 && (
-              <div className="flex flex-col items-center gap-3 mt-[40px]">
-                <img src={noDataFound} />
-                <p style={{ color: "#5E849C" }}>No respects given!</p>
-              </div>
-            )}
-            {type === "recieved" && obj?.recievedRespects?.length === 0 && (
-              <div className="flex flex-col items-center gap-3 mt-[40px]">
-                <img src={noDataFound} />
-                <p style={{ color: "#5E849C" }}>No respects recieved!</p>
-              </div>
-            )}
+            
             {type === "given" &&
               obj?.givenRespects?.map((each) => (
                 <EachRespect
@@ -162,15 +147,21 @@ const Profile = () => {
                 />
               ))}
           </div>
-          {!isMyProfile && (
-            <div
-              style={{ backgroundColor: "#1363DF", borderRadius: "100px" }}
-              className="fixed bottom-[50px] right-[35px] text-white p-5 rounded-4xl"
-              onClick={videoOpenHandler}
-            >
-              <VideocamIcon style={{ fontSize: "30px" }} />
-            </div>
-          )}
+          <div className="mt-[20px] flex items-center justify-center">
+          {type === "given" && obj?.givenRespects?.length === 0 && (
+              <div className="flex flex-col items-center gap-3 mt-[40px]">
+                <img src={noDataFound} />
+                <p style={{ color: "#5E849C" }}>No respects given!</p>
+              </div>
+            )}
+            {type === "recieved" && obj?.recievedRespects?.length === 0 && (
+              <div className="flex flex-col items-center gap-3 mt-[40px]">
+                <img src={noDataFound} />
+                <p style={{ color: "#5E849C" }}>No respects recieved!</p>
+              </div>
+            )}
+          </div>
+          
         </>
       )}
       {notExist && (

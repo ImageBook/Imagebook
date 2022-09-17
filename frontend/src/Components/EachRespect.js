@@ -20,7 +20,6 @@ const EachRespect = (props) => {
         video: props.url,
         senderImage: sender?.image
     };
-    // 
 
     useEffect(() => {
         getSender();
@@ -42,9 +41,6 @@ const EachRespect = (props) => {
         const data = res?.data;
         setReciever(data[0]);
     };
-
-    // const id = props.id;
-    // console.log('id', id);
 
     const goToDisplayVideo = () => {
         navigate(`/watch-video`, {
