@@ -7,6 +7,7 @@ import playVideo from '../images/playVideo.png';
 import reacts from '../images/Thumbnail reaction indicator.png';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import playIcon from '../images/Profile/play_circle.svg';
 
 
 const EachRespect = (props) => {
@@ -20,6 +21,8 @@ const EachRespect = (props) => {
         video: props.url,
         senderImage: sender?.image
     };
+    const { each } = props;
+
 
     useEffect(() => {
         getSender();
@@ -43,28 +46,30 @@ const EachRespect = (props) => {
     };
 
     const goToDisplayVideo = () => {
-        navigate(`/watch-video`, {
-            state: {
-                senderName: sender?.name,
-                recieverName: reciever?.name,
-                video: props.url,
-                senderImage: sender?.image,
-                cameraUsed: props.cameraUsed
-            }
-        });
+        navigate(`/watch-video`);
     }
 
     return (
-        <div className="mx-auto" onClick={goToDisplayVideo}>
-            
-                <video
-                    style={{ height: "250px", minHeight: "200px", transform: props.cameraUsed === 'user' ? "scaleX(-1)" : '' }}
-                    className=" w-full h-[100px]"
-                    src={props.url}
-                    alt=""
-                />
-                
+        <div className='mx-auto relative hover:cursor-pointer'>
+            <video
+                style={{ height: "180px", minHeight: "180px" }}
+                className=" w-[120px] h-[100px] rounded-lg"
+                src={each.url}
+                alt=""
+            />
+            <img className='absolute bottom-3 left-3' src={playIcon} alt="" />
+            <p className='absolute bottom-3 right-3 text-white text-sm font-semibold'>1.1K</p>
         </div>
+        // <div className="mx-auto" onClick={goToDisplayVideo}>
+
+        //         <video
+        //             style={{ height: "250px", minHeight: "200px", transform: props.cameraUsed === 'user' ? "scaleX(-1)" : '' }}
+        //             className=" w-full h-[100px]"
+        //             src={props.url}
+        //             alt=""
+        //         />
+
+        // </div>
     );
 };
 
