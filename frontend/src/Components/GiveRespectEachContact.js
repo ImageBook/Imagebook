@@ -9,6 +9,8 @@ const GiveRespectEachContact = (props) => {
     <div
       style={{ backgroundColor: "#F5F8FA" }}
       className="flex gap-2 w-11/12 mx-auto p-[12px]  rounded-xl" onClick={navigateRecordVideo}
+      
+      
       // onClick={(e)=>props.setModalOpen({
       //   number: props.item.number,
       //   name: props.item.name,
