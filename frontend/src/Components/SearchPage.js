@@ -1,23 +1,16 @@
-import React, { useEffect } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import leftIcon from "../images/Notifications/Left Icon.png";
 import loveIcon from "../images/Home/Right Icon.png";
 import notification from "../images/Home/Right Icon (1).png";
 import person from "../images/Notifications/Vector.png";
 import search from "../images/Notifications/search.png";
 import ContactEach from "./ContactEach";
-import { useState } from "react";
-import ohNoImage from "../Assets/ohNoImage.png";
-import add from '../Assets/add.png'
-import 'react-phone-number-input/style.css'
-import { isPossiblePhoneNumber } from 'react-phone-number-input'
-import PhoneInput from 'react-phone-number-input'
-import GiveRespectEachContact from "./GiveRespectEachContact";
-import axios from "axios";
+import ForNewUser from "./ForNewUser";
+import PhoneInput from "react-phone-number-input";
+import Search from "@mui/icons-material/Search";
 
-const GiveRespectSearchPage = () => {
-  const location = useLocation();
-  console.log(location.state.id);
+const SearchPage = () => {
   const arr = [
     {
       name: "Aarush Mishra",
@@ -30,42 +23,33 @@ const GiveRespectSearchPage = () => {
       img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80",
     },
   ];
-
+  const unreg = [
+    {
+      name: "Aarush Mishra",
+      number: "+9189237348934",
+      img: "https://media.istockphoto.com/photos/portrait-of-handsome-latino-african-man-picture-id1007763808?k=20&m=1007763808&s=612x612&w=0&h=q4qlV-99EK1VHePL1-Xon4gpdpK7kz3631XK4Hgr1ls=",
+    },
+    {
+      name: "Bhageerathi Patel",
+      number: "+9189237348934",
+      img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80",
+    },
+  ];
   const navigate = useNavigate();
+  const [modal, setModal] = useState(false);
   const [input, setInput] = useState("");
-  const [searchResult, setSearchResult] = useState({});
-
-
-  useEffect(() => {
-    onInputChange();
-  }, [input])
-
-  const onInputChange = async () => {
-    const res = await axios.get(`https://radiant-harbor-65978.herokuapp.com/searchUserPartialNumber/${input}`)
-    const data = res.data;
-    if (data) {
-      setSearchResult({
-        name: data.name,
-        number: data.number,
-        img: data.image,
-        registered: data.registered
-      })
-    }
-    if (!data) {
-      setSearchResult(null)
-    }
-  }
-
-
+  const [modalNumber, setModalNumber] = useState("");
   const goToNotifications = () => {
     navigate("/notifications");
   };
   const openContactHandler = () => {
-    navigate("/contacts", { state: { id: 'send' } });
+    navigate("/contacts", { state: { id: 'search' } });
   };
-  const suggestNameHandler = () => {
-    navigate('/suggestName', { state: { id: input, request: location.state.id } })
-  }
+
+  const modalOpenHandler = (number) => {
+    setModalNumber(number);
+    setModal(true);
+  };
 
   return (
     <div>
@@ -91,14 +75,11 @@ const GiveRespectSearchPage = () => {
         </div>
       </div>
       <div className="">
-        <div className="w-11/12 mx-auto mt-12 flex items-center space-x-3">
-          <PhoneInput
-            className="border-[2px] border-[#EBF1F4] rounded-[10px] p-[10px] h-12 text-lg"
-            defaultCountry="IN"
-            placeholder="Enter phone number"
-            value={input}
-            onChange={setInput}
-          />
+        <div className="w-11/12 mx-auto mt-12 flex justify-center items-center space-x-3">
+          <div className="border-[2px] border-[#EBF1F4] rounded-[10px] p-[10px] h-12 text-lg flex ">
+            <Search style={{ color: "#5E849C" }} />
+            <input type="tel" style={{ outline: "none" }} className="placeholder-[#5E849C] w-[200px]" placeholder="Type Here" onChange={(e) => setInput(e.target.value)} />
+          </div>
           <div
             className="w-[44px] h-12 shadow-lg rounded-xl flex items-center justify-center"
             onClick={openContactHandler}
@@ -114,50 +95,71 @@ const GiveRespectSearchPage = () => {
             </p>
           </div>
         )}
-        {
-          input && <div className=" w-11/12 mx-auto mt-[27px]">
-            <p
-              style={{ color: "#5E849C" }}
-              className="text-sm font-semibold"
-            >
-              Suggested Results
-            </p>
-
-          </div>
-        }
         {input?.length !== 0 &&
+          unreg.filter((obj) => obj.number.includes(input)).length !== 0 &&
           arr.filter((obj) => obj.number.includes(input)).length !== 0 && (
             <>
-
-
+              <div className="flex flex-row justify-between w-11/12 mx-auto mt-[27px]">
+                <p
+                  style={{ color: "#5E849C" }}
+                  className="text-sm font-semibold"
+                >
+                  Contacts on ImageBook
+                </p>
+                <p style={{ color: "#47B5FF" }} className="text-sm underline">
+                  View All
+                </p>
+              </div>
               <div className="flex flex-col gap-3 mt-[20px]">
                 {arr
                   .filter((obj) => obj.number.includes(input))
                   .map((each) => (
-                    <GiveRespectEachContact request={location.state.id} item={each} />
+                    <ContactEach item={each} />
                   ))}
               </div>
             </>
           )}
-        {(input && arr.filter((obj) => obj.number.includes(input)).length === 0 && searchResult && searchResult.registered == true) && <div className="mt-[20px]">
-
-          <GiveRespectEachContact request={location.state.id} item={searchResult} />
-        </div>}
-        {input && !searchResult && isPossiblePhoneNumber(input) &&
+        {input &&
+          unreg.filter((obj) => obj.number.includes(input)).length === 0 &&
           arr.filter((obj) => obj.number.includes(input)).length === 0 && (
             <>
-              <div className="w-11/12 flex flex-row justify-between items-center mt-[20px] mx-auto bg-[#F5F8FA] rounded-xl h-[70px] px-[15px]" onClick={suggestNameHandler}>
-                <div className="flex flex-col gap-0.5 ">
-                  <p className="text-lg">{input}</p>
-                  <p className="text-sm text-[#5E849C]">Unregistered</p>
+              <p
+                style={{ color: "#5E849C" }}
+                className="text-sm font-semibold ml-[20px] mt-[20px]"
+              >
+                Phonebook
+              </p>
+              <div onClick={(e) => modalOpenHandler(input)}>
+                <div
+                  style={{ backgroundColor: "#F5F8FA" }}
+                  className="flex gap-2 w-11/12 mx-auto p-[12px]  rounded-xl"
+                >
+                  <img
+                    style={{
+                      borderRadius: "200px",
+                      width: "60px",
+                      height: "60px",
+                      marginRight: "12px",
+                    }}
+                    src="https://i.stack.imgur.com/l60Hf.png"
+                  />
+                  <div>
+                    <p className="text-lg">{input?.toString()}</p>
+                    <p
+                      style={{ backgroundColor: "#E8E8E8" }}
+                      className="text-sm font-bold p-[4px] rounded-md w-fit"
+                    >
+                      Unregistered
+                    </p>
+                  </div>
                 </div>
-                <img src={add} />
               </div>
             </>
           )}
       </div>
+      {modal && <ForNewUser number={modalNumber} setModal={setModal} />}
     </div>
   );
 };
 
-export default GiveRespectSearchPage;
+export default SearchPage;
