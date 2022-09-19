@@ -12,8 +12,8 @@ import axios from "axios";
 const SuggestName = () => {
   const [name, setName] = useState("");
   const [modal, setModal] = useState(false);
-  const [yesNo,setYesNo] = useState('');
-  const navigate = useNavigate(); 
+  const [yesNo, setYesNo] = useState('');
+  const navigate = useNavigate();
   const location = useLocation();
 
 
@@ -21,11 +21,11 @@ const SuggestName = () => {
     navigate(-1);
   };
 
-  const createUserHandler = async ()=>{
-    const obj = {name:name,number:location.state.id}
-    const res = await axios.post('http://localhost:5000/createNonExistingUser',obj);
-    
-    navigate('/newCreatedUserProfile',{state:{id:location.state.id,request:location.state.request}});
+  const createUserHandler = async () => {
+    const obj = { name: name, number: location.state.id }
+    const res = await axios.post('https://imagebook-digilabs.herokuapp.com/createNonExistingUser', obj);
+
+    navigate('/newCreatedUserProfile', { state: { id: location.state.id, request: location.state.request } });
   }
   return (
     <>
@@ -40,32 +40,32 @@ const SuggestName = () => {
           onChange={(e) => setName(e.target.value)}
         />
       </div>
-      
-        <div className="flex flex-col gap-8 text-center justify-center items-center mt-[150px]">
-          <div className="flex flex-col items-center">
+
+      <div className="flex flex-col gap-8 text-center justify-center items-center mt-[150px]">
+        <div className="flex flex-col items-center">
           <img src={ContactIcon} />
           <p style={{ width: "85%", margin: "auto" }}>
             Please suggest correct first name only else your respect wouldn't
             get Counted
           </p>
-          </div>
         </div>
-        <button
+      </div>
+      <button
         onClick={createUserHandler}
         disabled={!name}
         style={{
-                position:"absolute",
-                bottom:"0",
-                backgroundColor: "#1363DF",
-                color: "white",
-                width: "90%",
-                height: "52px",
-                borderRadius: "10px",
-                margin: "24px",
-                opacity: name?"1":"0.5"
-              }}>Suggest Name</button>
-     
-      
+          position: "absolute",
+          bottom: "0",
+          backgroundColor: "#1363DF",
+          color: "white",
+          width: "90%",
+          height: "52px",
+          borderRadius: "10px",
+          margin: "24px",
+          opacity: name ? "1" : "0.5"
+        }}>Suggest Name</button>
+
+
     </>
   );
 };

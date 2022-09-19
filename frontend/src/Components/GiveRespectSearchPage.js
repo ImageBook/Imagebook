@@ -30,43 +30,43 @@ const GiveRespectSearchPage = () => {
       img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80",
     },
   ];
-  
+
   const navigate = useNavigate();
   const [input, setInput] = useState("");
-  const [searchResult,setSearchResult] =useState({});
+  const [searchResult, setSearchResult] = useState({});
 
 
-  useEffect(()=>{
+  useEffect(() => {
     onInputChange();
-  },[input])
+  }, [input])
 
-  const onInputChange = async ()=>{
-    const res = await axios.get(`http://localhost:5000/searchUserPartialNumber/${input}`)
+  const onInputChange = async () => {
+    const res = await axios.get(`https://imagebook-digilabs.herokuapp.com/searchUserPartialNumber/${input}`)
     const data = res.data;
-    if(data){
+    if (data) {
       setSearchResult({
         name: data.name,
         number: data.number,
         img: data.image,
-        registered:data.registered
+        registered: data.registered
       })
     }
-    if(!data){
+    if (!data) {
       setSearchResult(null)
     }
   }
-  
+
 
   const goToNotifications = () => {
     navigate("/notifications");
   };
   const openContactHandler = () => {
-    navigate("/contacts",{state:{id:'send'}});
+    navigate("/contacts", { state: { id: 'send' } });
   };
-  const suggestNameHandler = ()=>{
-    navigate('/suggestName',{state:{id:input,request:location.state.id}})
+  const suggestNameHandler = () => {
+    navigate('/suggestName', { state: { id: input, request: location.state.id } })
   }
-  
+
   return (
     <div>
       <div className="w-11/12 mx-auto my-6">
@@ -92,7 +92,7 @@ const GiveRespectSearchPage = () => {
       </div>
       <div className="">
         <div className="w-11/12 mx-auto mt-12 flex items-center space-x-3">
-        <PhoneInput
+          <PhoneInput
             className="border-[2px] border-[#EBF1F4] rounded-[10px] p-[10px] h-12 text-lg"
             defaultCountry="IN"
             placeholder="Enter phone number"
@@ -116,20 +116,20 @@ const GiveRespectSearchPage = () => {
         )}
         {
           input && <div className=" w-11/12 mx-auto mt-[27px]">
-          <p
-            style={{ color: "#5E849C" }}
-            className="text-sm font-semibold"
-          >
-            Suggested Results
-          </p>
-          
-        </div>
+            <p
+              style={{ color: "#5E849C" }}
+              className="text-sm font-semibold"
+            >
+              Suggested Results
+            </p>
+
+          </div>
         }
         {input?.length !== 0 &&
           arr.filter((obj) => obj.number.includes(input)).length !== 0 && (
             <>
-              
-              
+
+
               <div className="flex flex-col gap-3 mt-[20px]">
                 {arr
                   .filter((obj) => obj.number.includes(input))
@@ -139,19 +139,19 @@ const GiveRespectSearchPage = () => {
               </div>
             </>
           )}
-          {(input &&  arr.filter((obj) => obj.number.includes(input)).length === 0 && searchResult && searchResult.registered==true ) && <div className="mt-[20px]">
-            
-              <GiveRespectEachContact item={searchResult}/>
-            </div>}
+        {(input && arr.filter((obj) => obj.number.includes(input)).length === 0 && searchResult && searchResult.registered == true) && <div className="mt-[20px]">
+
+          <GiveRespectEachContact item={searchResult} />
+        </div>}
         {input && !searchResult && isPossiblePhoneNumber(input) &&
           arr.filter((obj) => obj.number.includes(input)).length === 0 && (
             <>
               <div className="w-11/12 flex flex-row justify-between items-center mt-[20px] mx-auto bg-[#F5F8FA] rounded-xl h-[70px] px-[15px]" onClick={suggestNameHandler}>
-                  <div className="flex flex-col gap-0.5 ">
-                    <p className="text-lg">{input}</p>
-                    <p className="text-sm text-[#5E849C]">Unregistered</p>
-                  </div>
-                  <img src={add}/>
+                <div className="flex flex-col gap-0.5 ">
+                  <p className="text-lg">{input}</p>
+                  <p className="text-sm text-[#5E849C]">Unregistered</p>
+                </div>
+                <img src={add} />
               </div>
             </>
           )}
