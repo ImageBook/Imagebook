@@ -21,10 +21,11 @@ router.route('/postUsers').post(async (req, res) => {
 
     });
     await newUser.save();
-    console.log("user created");
+    res.send(user)
   }
   else if (foundData.length !== 0 && foundData[0]?.registered == false) {
-    await User.findOneAndUpdate({ number: req.body.number }, { registered: true, name: req.body.name, accountCreationDate: Date.now() })
+    const user= await User.findOneAndUpdate({ number: req.body.number }, { registered: true, name: req.body.name, accountCreationDate: Date.now() })
+    res.send(user);
   }
 })
 

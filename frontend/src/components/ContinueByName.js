@@ -16,14 +16,14 @@ const ContinueByName = ({ number }) => {
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
-  const onSubmit = (data) => {
+  const onSubmit =async (data) => {
     const userName = data.firstName.trim() + " " + data.lastName.trim();
 
     const user = {
       number: number,
       name: userName,
     };
-    axios.post('https://radiant-harbor-65978.herokuapp.com/postUsers', user);
+    await axios.post('https://radiant-harbor-65978.herokuapp.com/postUsers', user);
 
 
     fetch(`https://radiant-harbor-65978.herokuapp.com/getUsers/${user.number}`)
