@@ -38,7 +38,7 @@ function App() {
       <Route path='/edit-profile' element={<EditProfile />}></Route>
       <Route path='/watch-video' element={<DisplayVideo></DisplayVideo>}></Route>
       <Route path='/searchSuggestName' element={<SearchSuggestName></SearchSuggestName>}></Route>
-      <Route path='/newCreatedUserProfile' element={<NewCreatedUserProfile/>}></Route>
+      <Route path='/newCreatedUserProfile' element={<NewCreatedUserProfile />}></Route>
       <Route path='/showProfile' element={<ShowProfile></ShowProfile>}></Route>
       <Route path='/good-work-feed' element={<GoodWorkFeed></GoodWorkFeed>}></Route>
     </Routes>
