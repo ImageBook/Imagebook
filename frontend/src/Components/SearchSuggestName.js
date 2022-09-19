@@ -16,7 +16,7 @@ const SearchSuggestName = () => {
 
   const unlockProfileHandler = async () => {
     let obj = { name: name, number: location.state.id }
-    await axios.post(`https://imagebook-digilabs.herokuapp.com/createNonExistingUser`, obj)
+    await axios.post(`https://radiant-harbor-65978.herokuapp.com/createNonExistingUser`, obj)
     navigate(`/${location.state.id}`)
 
   }

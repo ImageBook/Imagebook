@@ -11,7 +11,7 @@ const ShowProfile = () => {
     const location = useLocation();
     const route = location.state.id;
     const obj = location.state.obj;
-    console.log(obj);
+    console.log('obj', obj);
 
     const navigateToBack = () => {
         navigate(-1);

@@ -23,7 +23,7 @@ const SuggestName = () => {
 
   const createUserHandler = async () => {
     const obj = { name: name, number: location.state.id }
-    const res = await axios.post('https://imagebook-digilabs.herokuapp.com/createNonExistingUser', obj);
+    const res = await axios.post('https://radiant-harbor-65978.herokuapp.com/createNonExistingUser', obj);
 
     navigate('/newCreatedUserProfile', { state: { id: location.state.id, request: location.state.request } });
   }

@@ -13,7 +13,7 @@ const NewCreatedUserProfile = () => {
         loadUser();
     }, [])
     const loadUser = async () => {
-        const res = await axios.get(`https://imagebook-digilabs.herokuapp.com/getUsers/${location.state.id}`)
+        const res = await axios.get(`https://radiant-harbor-65978.herokuapp.com/getUsers/${location.state.id}`)
         const data = res.data;
 
         setUser({

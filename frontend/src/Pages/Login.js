@@ -40,11 +40,11 @@ const Login = () => {
     //     }
     // };
 
-    useEffect(()=>{
-        if(localStorage.getItem('loggedInUser')){
+    useEffect(() => {
+        if (localStorage.getItem('loggedInUser')) {
             navigate('/home')
         }
-    },[])
+    }, [])
 
     const generateRecaptcha = () => {
         window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
@@ -72,7 +72,7 @@ const Login = () => {
         e.preventDefault();
         const confirmationResult = window.confirmationResult;
         confirmationResult.confirm(otp).then((result) => {
-            fetch(`https://imagebook-digilabs.herokuapp.com/getUsers/${number}`)
+            fetch(`https://radiant-harbor-65978.herokuapp.com/getUsers/${number}`)
                 .then(res => res.json())
                 .then(data => {
                     // console.log('data', data);

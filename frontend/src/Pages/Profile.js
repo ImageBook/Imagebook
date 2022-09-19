@@ -40,7 +40,7 @@ const Profile = () => {
 
   const getUser = async () => {
     const response = await axios.get(
-      `https://imagebook-digilabs.herokuapp.com/getUsers/${params.id}`
+      `https://radiant-harbor-65978.herokuapp.com/getUsers/${params.id}`
     );
     const data = response?.data;
     if (data.length === 0) {
@@ -60,6 +60,7 @@ const Profile = () => {
     navigate("/giveResectSearch");
   };
 
+  console.log('profile', obj);
   const navigateToDisplay = (route) => {
     navigate('/showProfile', { state: { id: route, obj: obj } });
   }

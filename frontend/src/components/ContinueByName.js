@@ -23,10 +23,10 @@ const ContinueByName = ({ number }) => {
       number: number,
       name: userName,
     };
-    axios.post('https://imagebook-digilabs.herokuapp.com/postUsers', user);
+    axios.post('https://radiant-harbor-65978.herokuapp.com/postUsers', user);
 
 
-    fetch(`https://imagebook-digilabs.herokuapp.com/getUsers/${user.number}`)
+    fetch(`https://radiant-harbor-65978.herokuapp.com/getUsers/${user.number}`)
       .then((res) => res.json())
       .then((data) => {
         // console.log('data', data);
