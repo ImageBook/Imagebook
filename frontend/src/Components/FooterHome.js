@@ -46,7 +46,7 @@ const FooterHome = () => {
           }}>
             <div
               className="flex items-center justify-center"
-              onClick={openSearchHandler}
+              
             >
               <img className="mt-[20px]" src={plus} alt="" />
             </div>
