@@ -109,8 +109,8 @@ const VideoRecorder = () => {
   const uploadFile = file => {
     const formData = new FormData();
     formData.append('file', file);
-    formData.append("upload_preset", "yfhzkfb5");
-    axios.post("https://api.cloudinary.com/v1_1/dtflws28q/video/upload", formData).then((response) => {
+    formData.append("upload_preset", "kghszgfx");
+    axios.post("https://api.cloudinary.com/v1_1/dewunyk7d/video/upload", formData).then((response) => {
       console.log('url', response.data.secure_url);
       console.log(response);
       if (response.status === 200) {
@@ -124,7 +124,7 @@ const VideoRecorder = () => {
             url: link,
             postedBy: userCtx.loggedInUser.number,
             cameraUsed: cameraMode,
-            selectedType:location.state.request
+            selectedType: location.state.request
           }
         }
         let obj1 = {
@@ -136,7 +136,7 @@ const VideoRecorder = () => {
             url: link,
             postedBy: userCtx.loggedInUser.number,
             cameraUsed: cameraMode,
-            selectedType:location.state.request
+            selectedType: location.state.request
           }
         }
         axios.post(`https://imagebook-digilabs.herokuapp.com/updateGivenRespects`, obj)
