@@ -91,9 +91,9 @@ const GiveRespectSearchPage = () => {
         </div>
       </div>
       <div className="">
-        <div className="w-11/12 mx-auto mt-12 flex items-center space-x-3">
+        <div className="w-11/12 mx-auto mt-12 flex items-center justify-center space-x-3">
           <PhoneInput
-            className="border-[2px] border-[#EBF1F4] rounded-[10px] p-[10px] h-12 text-lg"
+            className="border-[2px] border-[#EBF1F4] rounded-[10px] p-[10px] h-12 text-lg w-[260px]"
             defaultCountry="IN"
             placeholder="Enter phone number"
             value={input}
